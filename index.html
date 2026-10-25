@@ -1,0 +1,4237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iSkills Hub — iSkills Next Command Center</title>
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>">
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- FontAwesome 6 CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* ==========================================================================
+       1. CSS VARIABLES & RESET - PROFESSIONAL BLUE THEME
+       ========================================================================== */
+    :root {
+      /* Theme: Professional Blue Palette */
+      --navy-950: #080d1a;
+      --navy-900: #0f172a;
+      --navy-850: #131d36;
+      --navy-800: #1e293b;
+      --navy-700: #334155;
+      
+      --blue-primary: #0284c7;
+      --blue-hover: #0369a1;
+      --blue-accent: #38bdf8;
+      --blue-light: #e0f2fe;
+      --blue-subtle: #f0f9ff;
+      --blue-glow: rgba(2, 132, 199, 0.25);
+
+      --bg-body: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-muted: #f1f5f9;
+      --bg-hover: #e2e8f0;
+
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+      --text-white: #ffffff;
+
+      --border-color: #e2e8f0;
+      --border-subtle: #edf2f7;
+      --border-dark: #334155;
+
+      --success: #10b981;
+      --success-light: #ecfdf5;
+      --warning: #f59e0b;
+      --warning-light: #fffbeb;
+      --danger: #ef4444;
+      --danger-light: #fef2f2;
+      --purple: #8b5cf6;
+      --purple-light: #f5f3ff;
+
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.06);
+
+      --sidebar-width: 290px;
+      --topbar-height: 64px;
+      --quickaccess-height: 44px;
+      --transition-fast: 0.15s ease;
+      --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* ==========================================================================
+       2. TOP BAR & QUICK ACCESS BAR
+       ========================================================================== */
+    .top-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background-color: var(--navy-900);
+      color: var(--text-white);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .top-main-bar {
+      height: var(--topbar-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.25rem;
+      gap: 1rem;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: var(--text-white);
+      user-select: none;
+    }
+
+    .brand-logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--blue-primary), var(--blue-accent));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 0 15px var(--blue-glow);
+    }
+
+    .brand-text-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      background: linear-gradient(to right, #ffffff, var(--blue-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-subtitle {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--blue-accent);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-toggle-btn {
+      display: none;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-white);
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: var(--transition-fast);
+    }
+    .nav-toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .top-search-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #94a3b8;
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--radius-full);
+      font-size: 0.825rem;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+    .top-search-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border-color: var(--blue-accent);
+    }
+
+    /* Pinned Quick Access Bar */
+    .quick-access-bar {
+      height: var(--quickaccess-height);
+      background-color: var(--navy-950);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      padding: 0 1.25rem;
+      gap: 0.65rem;
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: none;
+    }
+    .quick-access-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .quick-access-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--blue-accent);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-right: 0.25rem;
+      flex-shrink: 0;
+    }
+
+    .quick-access-chips {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: nowrap;
+    }
+
+    .quick-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 0.775rem;
+      font-weight: 500;
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-full);
+      transition: var(--transition-fast);
+      flex-shrink: 0;
+    }
+    .quick-chip:hover {
+      background: var(--blue-primary);
+      border-color: var(--blue-accent);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+    .quick-chip img, .quick-chip i {
+      font-size: 0.85rem;
+      width: 14px;
+      height: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quick-chip-empty {
+      font-size: 0.75rem;
+      color: #64748b;
+      font-style: italic;
+    }
+
+    /* ==========================================================================
+       3. APP LAYOUT (SIDEBAR + MAIN CONTENT)
+       ========================================================================== */
+    .app-container {
+      display: flex;
+      flex: 1;
+      position: relative;
+      height: calc(100vh - var(--topbar-height) - var(--quickaccess-height));
+      overflow: hidden;
+    }
+
+    /* Sidebar Navigation */
+    .app-sidebar {
+      width: var(--sidebar-width);
+      background-color: var(--navy-900);
+      color: #cbd5e1;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--navy-800);
+      flex-shrink: 0;
+      overflow-y: auto;
+      transition: transform var(--transition-normal);
+      z-index: 30;
+    }
+
+    .sidebar-section {
+      padding: 1rem 0.85rem 0.5rem;
+    }
+
+    .sidebar-heading {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #64748b;
+      padding: 0 0.5rem 0.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sidebar-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.6rem 0.75rem;
+      border-radius: var(--radius-sm);
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      user-select: none;
+      border: 1px solid transparent;
+    }
+
+    .nav-link:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+    }
+
+    .nav-link.active {
+      background-color: var(--blue-primary);
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35);
+    }
+
+    .nav-link-content {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .nav-link-icon {
+      width: 20px;
+      font-size: 0.95rem;
+      text-align: center;
+      color: var(--blue-accent);
+    }
+    .nav-link.active .nav-link-icon {
+      color: #ffffff;
+    }
+
+    .nav-badge {
+      font-size: 0.7rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+    .nav-link.active .nav-badge {
+      background: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+    }
+
+    /* Module Navigation Tree */
+    .module-item-wrap {
+      margin-bottom: 0.2rem;
+    }
+
+    .module-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: var(--radius-sm);
+      transition: var(--transition-fast);
+    }
+
+    .module-header-row:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .module-header-row .nav-link {
+      flex: 1;
+      padding-right: 0.25rem;
+    }
+
+    .module-toggle-sub {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      color: #64748b;
+      cursor: pointer;
+      border-radius: var(--radius-sm);
+      transition: var(--transition-fast);
+      margin-right: 0.25rem;
+    }
+    .module-toggle-sub:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .submodule-list {
+      list-style: none;
+      padding-left: 1.85rem;
+      margin-top: 0.2rem;
+      margin-bottom: 0.35rem;
+      border-left: 1px dashed rgba(255, 255, 255, 0.15);
+      margin-left: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .submodule-list.collapsed {
+      display: none;
+    }
+
+    .submodule-link {
+      font-size: 0.815rem;
+      padding: 0.4rem 0.6rem;
+    }
+
+    .add-module-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.55rem;
+      margin-top: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-sm);
+      color: var(--blue-accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+    .add-module-btn:hover {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: var(--blue-accent);
+      color: #ffffff;
+    }
+
+    /* Sidebar Footer / Storage summary */
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 0.85rem;
+      background: rgba(0, 0, 0, 0.2);
+      border-top: 1px solid var(--navy-800);
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .data-backup-links {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .data-link-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      text-decoration: underline;
+    }
+    .data-link-btn:hover {
+      color: var(--blue-accent);
+    }
+
+    /* Sidebar backdrop for mobile */
+    .sidebar-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(3px);
+      z-index: 25;
+    }
+
+    /* ==========================================================================
+       4. MAIN CONTENT AREA
+       ========================================================================== */
+    .app-main {
+      flex: 1;
+      height: 100%;
+      overflow-y: auto;
+      background-color: var(--bg-body);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .content-container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 1.75rem 1.5rem 6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+
+    /* View headers */
+    .view-header {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.75rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .view-header-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .breadcrumb-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .breadcrumb-row a {
+      color: var(--blue-primary);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .breadcrumb-row a:hover {
+      text-decoration: underline;
+    }
+
+    .view-title {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--navy-900);
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .view-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
+    /* Stream Filters & View Controls Bar */
+    .stream-controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1rem;
+    }
+
+    .filter-pills {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      overflow-x: auto;
+      max-width: 100%;
+      padding-bottom: 2px;
+    }
+
+    .filter-pill {
+      border: 1px solid var(--border-color);
+      background: var(--bg-surface);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: var(--transition-fast);
+      white-space: nowrap;
+    }
+    .filter-pill:hover {
+      background: var(--bg-muted);
+      color: var(--text-main);
+    }
+    .filter-pill.active {
+      background: var(--navy-900);
+      border-color: var(--navy-900);
+      color: #ffffff;
+    }
+
+    .stream-view-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .view-mode-toggle {
+      display: inline-flex;
+      background: var(--bg-muted);
+      padding: 0.2rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .toggle-btn {
+      background: transparent;
+      border: none;
+      padding: 0.35rem 0.65rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: var(--transition-fast);
+    }
+    .toggle-btn.active {
+      background: var(--bg-surface);
+      color: var(--blue-primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-size-selector {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: var(--bg-muted);
+      padding: 0.2rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+    .size-btn {
+      border: none;
+      background: transparent;
+      padding: 0.3rem 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+    }
+    .size-btn.active {
+      background: var(--bg-surface);
+      color: var(--navy-900);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ==========================================================================
+       5. HOME DASHBOARD
+       ========================================================================== */
+    .hero-welcome-card {
+      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 50%, #0369a1 100%);
+      color: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-welcome-card::after {
+      content: '🎓';
+      position: absolute;
+      right: 1.5rem;
+      bottom: -1rem;
+      font-size: 8rem;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(56, 189, 248, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: var(--blue-accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+      margin-bottom: 0.85rem;
+    }
+
+    .hero-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      max-width: 680px;
+      line-height: 1.6;
+    }
+
+    /* Quick Action Buttons Grid */
+    .quick-actions-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .section-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-heading {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .quick-action-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .quick-action-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text-main);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-fast);
+      position: relative;
+      overflow: hidden;
+    }
+    .quick-action-card:hover {
+      border-color: var(--blue-accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .qa-icon-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .qa-chat { background: #e0f2fe; color: #0284c7; }
+    .qa-video { background: #fee2e2; color: #ef4444; }
+    .qa-tool { background: #fef3c7; color: #d97706; }
+    .qa-note { background: #ede9fe; color: #7c3aed; }
+    .qa-file { background: #dcfce7; color: #16a34a; }
+
+    .qa-text-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    .qa-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+    .qa-subtitle {
+      font-size: 0.775rem;
+      color: var(--text-muted);
+    }
+
+    /* Dashboard Stats & Overview */
+    .dashboard-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.15rem 1.25rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .stat-label {
+      font-size: 0.775rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .stat-number {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--navy-900);
+      line-height: 1;
+    }
+
+    /* ==========================================================================
+       6. VERTICAL TIMELINE / STREAM VIEW
+       ========================================================================== */
+    .stream-pinned-section {
+      background: linear-gradient(to right, #eff6ff, #f8fafc);
+      border: 2px dashed #93c5fd;
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .pinned-section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--blue-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pinned-items-container {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .timeline-stream-container {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    /* Left connector line for timeline */
+    .timeline-stream-container::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      bottom: 25px;
+      left: 20px;
+      width: 2px;
+      background: #e2e8f0;
+      z-index: 1;
+    }
+
+    .stream-item-row {
+      position: relative;
+      display: flex;
+      gap: 1.25rem;
+      z-index: 2;
+    }
+
+    .stream-node-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-full);
+      background: var(--bg-surface);
+      border: 2px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      color: var(--navy-900);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-fast);
+    }
+    .stream-item-row:hover .stream-node-icon {
+      border-color: var(--blue-primary);
+      transform: scale(1.08);
+    }
+
+    .stream-card-body {
+      flex: 1;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-fast);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .stream-card-body:hover {
+      border-color: #cbd5e1;
+      box-shadow: var(--shadow-md);
+    }
+
+    .stream-card-body.pinned-card {
+      border-left: 4px solid var(--blue-primary);
+    }
+
+    .stream-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .item-meta-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .item-type-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .badge-chat { background: #e0f2fe; color: #0369a1; }
+    .badge-video { background: #fee2e2; color: #b91c1c; }
+    .badge-tool { background: #fef3c7; color: #b45309; }
+    .badge-note { background: #ede9fe; color: #6d28d9; }
+    .badge-file { background: #dcfce7; color: #15803d; }
+
+    .item-date-text {
+      font-size: 0.75rem;
+      color: var(--text-light);
+    }
+
+    .item-module-badge {
+      font-size: 0.72rem;
+      background: var(--bg-muted);
+      color: var(--text-muted);
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-sm);
+      font-weight: 500;
+    }
+
+    .item-title-link {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: var(--transition-fast);
+      line-height: 1.35;
+    }
+    .item-title-link:hover {
+      color: var(--blue-primary);
+    }
+
+    .item-actions-group {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      flex-shrink: 0;
+    }
+
+    .icon-action-btn {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid transparent;
+      background: transparent;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: var(--transition-fast);
+    }
+    .icon-action-btn:hover {
+      background: var(--bg-muted);
+      color: var(--navy-900);
+      border-color: var(--border-color);
+    }
+    .icon-action-btn.active-pin {
+      color: var(--blue-primary);
+      background: var(--blue-light);
+    }
+    .icon-action-btn.danger:hover {
+      color: var(--danger);
+      background: var(--danger-light);
+      border-color: #fecaca;
+    }
+
+    /* Content Previews */
+    .item-description-text {
+      font-size: 0.875rem;
+      color: var(--navy-700);
+      line-height: 1.55;
+    }
+
+    .item-tags-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .item-tag {
+      font-size: 0.72rem;
+      background: var(--bg-muted);
+      color: var(--text-muted);
+      padding: 0.15rem 0.45rem;
+      border-radius: var(--radius-sm);
+      font-weight: 500;
+    }
+
+    /* Video Card Specifics */
+    .video-preview-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      background: var(--navy-950);
+      color: #ffffff;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-top: 0.5rem;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+    .video-preview-box:hover {
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transform: translateY(-2px);
+    }
+
+    .video-thumb-wrap {
+      position: relative;
+      width: 220px;
+      min-height: 125px;
+      background: #000;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .video-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .video-play-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px;
+      height: 44px;
+      background: rgba(239, 68, 68, 0.9);
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+    .video-info-wrap {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.4rem;
+      flex: 1;
+    }
+    .video-channel-name {
+      font-size: 0.8rem;
+      color: var(--blue-accent);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* Tool Card Specifics */
+    .tool-link-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      background: var(--bg-muted);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      color: var(--text-main);
+      transition: var(--transition-fast);
+    }
+    .tool-link-card:hover {
+      background: #ffffff;
+      border-color: var(--blue-primary);
+    }
+    .tool-favicon {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      object-fit: contain;
+      background: #ffffff;
+      padding: 3px;
+      border: 1px solid var(--border-color);
+    }
+    .tool-icon-fallback {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue-light);
+      color: var(--blue-primary);
+      font-size: 1rem;
+    }
+
+    /* Note Preview */
+    .note-content-rendered {
+      background: #fafafa;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      font-size: 0.9rem;
+      color: var(--navy-800);
+      line-height: 1.6;
+      max-height: 250px;
+      overflow-y: auto;
+    }
+    .note-content-rendered h1, .note-content-rendered h2, .note-content-rendered h3 {
+      color: var(--navy-900);
+      margin-top: 0.6rem;
+      margin-bottom: 0.35rem;
+    }
+    .note-content-rendered ul, .note-content-rendered ol {
+      padding-left: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .note-content-rendered blockquote {
+      border-left: 3px solid var(--blue-primary);
+      padding-left: 0.75rem;
+      color: var(--text-muted);
+      margin: 0.5rem 0;
+    }
+    .note-content-rendered pre, .note-content-rendered code {
+      font-family: 'JetBrains Mono', monospace;
+      background: #e2e8f0;
+      border-radius: 4px;
+      font-size: 0.825rem;
+    }
+    .note-content-rendered code {
+      padding: 0.15rem 0.35rem;
+    }
+    .note-content-rendered pre {
+      padding: 0.75rem;
+      overflow-x: auto;
+      margin: 0.5rem 0;
+    }
+
+    /* File / Document Card */
+    .file-attachment-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-muted);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      gap: 1rem;
+    }
+    .file-type-icon {
+      font-size: 1.5rem;
+      color: var(--navy-700);
+    }
+    .file-details {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      overflow: hidden;
+    }
+    .file-name {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--navy-900);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .file-size-tag {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+    .file-img-preview {
+      max-width: 140px;
+      max-height: 85px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      border: 1px solid var(--border-color);
+    }
+
+    /* AI Chat Platform Badges */
+    .platform-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-full);
+    }
+    .platform-chatgpt { background: #dcfce7; color: #15803d; }
+    .platform-claude { background: #fef3c7; color: #b45309; }
+    .platform-gemini { background: #e0e7ff; color: #4338ca; }
+    .platform-groq { background: #ffedd5; color: #c2410c; }
+    .platform-deepseek { background: #ede9fe; color: #6d28d9; }
+    .platform-perplexity { background: #ccfbf1; color: #0f766e; }
+    .platform-other { background: #f1f5f9; color: #475569; }
+
+    /* ==========================================================================
+       7. CARDS VIEW VS LIST VIEW FOR AI CHATS / STREAM
+       ========================================================================== */
+    .stream-items-grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    /* Cards View Sizes */
+    .stream-items-grid.cards-compact {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+    .stream-items-grid.cards-medium {
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    }
+    .stream-items-grid.cards-large {
+      grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+    }
+
+    .stream-items-grid.cards-compact .stream-item-row,
+    .stream-items-grid.cards-medium .stream-item-row,
+    .stream-items-grid.cards-large .stream-item-row {
+      display: block;
+    }
+    .stream-items-grid[class*="cards-"] .stream-node-icon {
+      display: none; /* In grid card view, suppress timeline line and node icon */
+    }
+
+    /* List View (Clean horizontal rows) */
+    .stream-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .stream-items-list .stream-node-icon {
+      display: none;
+    }
+    .stream-items-list .stream-item-row {
+      display: block;
+    }
+    .stream-items-list .stream-card-body {
+      padding: 0.85rem 1.25rem;
+      gap: 0.4rem;
+    }
+
+    /* ==========================================================================
+       8. OFFICIAL PAGES VIEW
+       ========================================================================== */
+    .official-pages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .official-page-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: var(--transition-fast);
+      position: relative;
+    }
+    .official-page-card:hover {
+      border-color: var(--blue-accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .official-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .official-cat-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: var(--blue-light);
+      color: var(--blue-primary);
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius-full);
+    }
+
+    /* ==========================================================================
+       9. GLOBAL SEARCH VIEW
+       ========================================================================== */
+    .search-input-box {
+      position: relative;
+      width: 100%;
+    }
+
+    .search-input-box i {
+      position: absolute;
+      left: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .global-search-input {
+      width: 100%;
+      background: var(--bg-surface);
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-full);
+      padding: 0.85rem 1.25rem 0.85rem 3.25rem;
+      font-size: 1rem;
+      color: var(--navy-900);
+      outline: none;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-fast);
+    }
+    .global-search-input:focus {
+      border-color: var(--blue-primary);
+      box-shadow: 0 0 0 3px var(--blue-glow);
+    }
+
+    /* ==========================================================================
+       10. FLOATING ACTION BUTTON (FAB)
+       ========================================================================== */
+    .fab-container {
+      position: fixed;
+      right: 2rem;
+      bottom: 2rem;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.75rem;
+    }
+
+    .fab-menu {
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: flex-end;
+      animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .fab-menu.active {
+      display: flex;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: translateY(10px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .fab-item-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      background: var(--navy-900);
+      color: #ffffff;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: var(--radius-full);
+      font-size: 0.825rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-lg);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+    .fab-item-btn:hover {
+      background: var(--blue-primary);
+      transform: translateX(-3px);
+    }
+
+    .fab-main-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, var(--blue-primary), var(--blue-accent));
+      color: #ffffff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 8px 20px var(--blue-glow);
+      cursor: pointer;
+      transition: transform var(--transition-fast), background var(--transition-fast);
+    }
+    .fab-main-btn:hover {
+      transform: scale(1.08) rotate(90deg);
+    }
+    .fab-main-btn.active {
+      transform: rotate(45deg);
+      background: var(--navy-900);
+    }
+
+    /* ==========================================================================
+       11. MODAL DIALOGS
+       ========================================================================== */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-dialog {
+      background: var(--bg-surface);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 600px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid var(--border-color);
+      animation: modalSlideIn 0.25s ease-out;
+      overflow: hidden;
+    }
+
+    @keyframes modalSlideIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .modal-header {
+      padding: 1.25rem 1.5rem;
+      background: var(--navy-900);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      font-size: 1.15rem;
+      cursor: pointer;
+      padding: 0.25rem;
+      border-radius: var(--radius-sm);
+    }
+    .modal-close-btn:hover {
+      color: #ffffff;
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    .modal-footer {
+      padding: 1rem 1.5rem;
+      background: var(--bg-muted);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.75rem;
+    }
+
+    /* Forms */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-label {
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: var(--navy-800);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 0.65rem 0.85rem;
+      font-size: 0.875rem;
+      font-family: inherit;
+      color: var(--navy-900);
+      background: var(--bg-surface);
+      transition: var(--transition-fast);
+      outline: none;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--blue-primary);
+      box-shadow: 0 0 0 3px var(--blue-glow);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .form-hint {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .form-checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--navy-800);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* Rich Text / Markdown Editor Controls */
+    .editor-toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.4rem;
+    }
+
+    .rich-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.25rem;
+      background: var(--bg-muted);
+      border: 1px solid var(--border-color);
+      border-bottom: none;
+      border-top-left-radius: var(--radius-sm);
+      border-top-right-radius: var(--radius-sm);
+      padding: 0.35rem 0.5rem;
+    }
+
+    .rich-tool-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.775rem;
+      cursor: pointer;
+      color: var(--navy-800);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .rich-tool-btn:hover {
+      background: var(--blue-light);
+      color: var(--blue-primary);
+    }
+
+    .rich-editor-area {
+      min-height: 140px;
+      border: 1px solid var(--border-color);
+      border-bottom-left-radius: var(--radius-sm);
+      border-bottom-right-radius: var(--radius-sm);
+      padding: 0.75rem;
+      outline: none;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      overflow-y: auto;
+      max-height: 250px;
+      background: #ffffff;
+    }
+    .rich-editor-area:focus {
+      border-color: var(--blue-primary);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.6rem 1.15rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: var(--transition-fast);
+      user-select: none;
+    }
+    .btn-primary {
+      background: var(--blue-primary);
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background: var(--blue-hover);
+    }
+    .btn-secondary {
+      background: var(--bg-muted);
+      border-color: var(--border-color);
+      color: var(--navy-800);
+    }
+    .btn-secondary:hover {
+      background: var(--bg-hover);
+    }
+    .btn-danger {
+      background: var(--danger);
+      color: #ffffff;
+    }
+    .btn-danger:hover {
+      background: #dc2626;
+    }
+
+    /* Empty state */
+    .empty-state-box {
+      background: var(--bg-surface);
+      border: 2px dashed var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    .empty-icon {
+      font-size: 2.75rem;
+      color: #cbd5e1;
+    }
+    .empty-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+    .empty-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-width: 400px;
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .toast {
+      background: var(--navy-900);
+      color: #ffffff;
+      padding: 0.75rem 1.15rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-xl);
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      border-left: 4px solid var(--blue-accent);
+      animation: toastIn 0.2s ease-out;
+    }
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==========================================================================
+       12. RESPONSIVE DESIGN (MOBILE FIRST / MEDIA QUERIES)
+       ========================================================================== */
+    @media (max-width: 900px) {
+      .app-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        transform: translateX(-100%);
+        z-index: 50;
+      }
+      .app-sidebar.open {
+        transform: translateX(0);
+      }
+      .sidebar-backdrop.open {
+        display: block;
+      }
+      .nav-toggle-btn {
+        display: flex;
+      }
+      .content-container {
+        padding: 1rem 0.85rem 5rem;
+      }
+      .timeline-stream-container::before {
+        left: 14px;
+      }
+      .stream-node-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.85rem;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .video-preview-box {
+        flex-direction: column;
+      }
+      .video-thumb-wrap {
+        width: 100%;
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       TOP BAR (BRAND, PINNED QUICK ACCESS, SEARCH, MOBILE HAMBURGER)
+       ========================================================================== -->
+  <header class="top-header">
+    <div class="top-main-bar">
+      <div style="display: flex; align-items: center; gap: 0.85rem;">
+        <button class="nav-toggle-btn" id="mobileNavToggle" title="Toggle Sidebar">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <a href="#/home" class="brand-section" onclick="navigateTo('home')">
+          <div class="brand-logo-icon">🎓</div>
+          <div class="brand-text-wrap">
+            <span class="brand-title">iSkills Hub</span>
+            <span class="brand-subtitle">iSkills Next Command Center</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="top-actions">
+        <button class="top-search-btn" onclick="navigateTo('search')">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Global Search...</span>
+        </button>
+        <button class="icon-action-btn" style="color: #ffffff;" onclick="openBackupModal()" title="Backup & Restore">
+          <i class="fa-solid fa-database"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Pinned Quick Access Bar for favorited Official Links -->
+    <div class="quick-access-bar" id="quickAccessBar">
+      <div class="quick-access-label">
+        <i class="fa-solid fa-thumbtack"></i> Quick Access:
+      </div>
+      <div class="quick-access-chips" id="quickAccessChips">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Sidebar Backdrop (Mobile) -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- ==========================================================================
+       MAIN APP WORKSPACE
+       ========================================================================== -->
+  <div class="app-container">
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Navigation</div>
+        <ul class="sidebar-nav-list">
+          <li>
+            <a class="nav-link" id="nav-home" onclick="navigateTo('home')">
+              <span class="nav-link-content">
+                <i class="fa-solid fa-house nav-link-icon"></i>
+                <span>Dashboard</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" id="nav-search" onclick="navigateTo('search')">
+              <span class="nav-link-content">
+                <i class="fa-solid fa-magnifying-glass nav-link-icon"></i>
+                <span>Global Search</span>
+              </span>
+              <span class="nav-badge" id="navSearchTotal">0</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" id="nav-official" onclick="navigateTo('official')">
+              <span class="nav-link-content">
+                <i class="fa-solid fa-landmark nav-link-icon"></i>
+                <span>Official Pages</span>
+              </span>
+              <span class="nav-badge" id="navOfficialTotal">0</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Modules Tree -->
+      <div class="sidebar-section" style="flex: 1;">
+        <div class="sidebar-heading">
+          <span>Course Modules</span>
+          <button class="icon-action-btn" style="width:22px; height:22px; color:#38bdf8;" onclick="openModuleModal()" title="Add New Module">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+        
+        <div id="sidebarModulesList" class="sidebar-nav-list">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <button class="add-module-btn" onclick="openModuleModal()">
+          <i class="fa-solid fa-folder-plus"></i>
+          <span>Create New Module</span>
+        </button>
+      </div>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <span style="color:#64748b;">iSkills Next v2.5</span>
+        <div class="data-backup-links">
+          <button class="data-link-btn" onclick="exportDataJson()"><i class="fa-solid fa-download"></i> Backup</button>
+          <button class="data-link-btn" onclick="openBackupModal()"><i class="fa-solid fa-upload"></i> Restore</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN DYNAMIC CONTENT -->
+    <main class="app-main" id="mainContent">
+      <div class="content-container" id="contentView">
+        <!-- Rendered based on current route/view -->
+      </div>
+    </main>
+  </div>
+
+  <!-- ==========================================================================
+       PERSISTENT FLOATING ACTION BUTTON (FAB)
+       ========================================================================== -->
+  <div class="fab-container">
+    <div class="fab-menu" id="fabMenu">
+      <button class="fab-item-btn" onclick="openResourceModal('chat')">
+        <i class="fa-solid fa-robot" style="color: #38bdf8;"></i> AI Chat
+      </button>
+      <button class="fab-item-btn" onclick="openResourceModal('video')">
+        <i class="fa-brands fa-youtube" style="color: #ef4444;"></i> Video
+      </button>
+      <button class="fab-item-btn" onclick="openResourceModal('tool')">
+        <i class="fa-solid fa-wrench" style="color: #f59e0b;"></i> Tool / Link
+      </button>
+      <button class="fab-item-btn" onclick="openResourceModal('note')">
+        <i class="fa-solid fa-note-sticky" style="color: #a855f7;"></i> Note
+      </button>
+      <button class="fab-item-btn" onclick="openResourceModal('file')">
+        <i class="fa-solid fa-file-arrow-up" style="color: #10b981;"></i> Document
+      </button>
+    </div>
+    <button class="fab-main-btn" id="fabMainBtn" title="Add Resource">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ==========================================================================
+       MODALS: RESOURCE MODAL (CRUD for Chat, Video, Tool, Note, File)
+       ========================================================================== -->
+  <div class="modal-backdrop" id="resourceModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title" id="resourceModalTitle">
+          <i class="fa-solid fa-plus-circle"></i>
+          <span>Add Resource</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeResourceModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="modal-body">
+        <input type="hidden" id="editItemId" value="">
+
+        <!-- Type Selector (Only in Add mode) -->
+        <div class="form-group" id="resourceTypeSelectGroup">
+          <label class="form-label">Resource Type</label>
+          <select class="form-select" id="formResourceType" onchange="onResourceTypeChange()">
+            <option value="chat">🤖 AI Chat (ChatGPT, Claude, Gemini, etc.)</option>
+            <option value="video">🎥 Reference YouTube Video</option>
+            <option value="tool">🛠️ Tool, Spreadsheet, or Website</option>
+            <option value="note">📝 Rich Text & Markdown Note</option>
+            <option value="file">📁 File & Document (Hybrid Storage)</option>
+          </select>
+        </div>
+
+        <!-- Target Module & Submodule Selection -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Module *</label>
+            <select class="form-select" id="formModuleSelect" onchange="populateSubmoduleSelect()">
+              <!-- Injected dynamically -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Sub-Module (Optional)</label>
+            <select class="form-select" id="formSubmoduleSelect">
+              <option value="">None (Main Module)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Title Field (Shared) -->
+        <div class="form-group">
+          <label class="form-label">Title *</label>
+          <input type="text" class="form-input" id="formTitle" placeholder="e.g., Best Prompt for Keyword Clustering" required>
+        </div>
+
+        <!-- ================= SPECIFIC FIELDS ================= -->
+
+        <!-- 1. AI CHAT FIELDS -->
+        <div id="fieldsChat" class="type-fields" style="display: flex; flex-direction: column; gap: 0.85rem;">
+          <div class="form-group">
+            <label class="form-label">Chat Share Link *</label>
+            <input type="url" class="form-input" id="formChatLink" placeholder="https://chatgpt.com/share/..." oninput="handleChatUrlAutoDetect(this.value)">
+            <span class="form-hint">Paste link from ChatGPT, Claude, Gemini, Groq, DeepSeek, etc. for auto-detection.</span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Platform (Auto-detected or override)</label>
+              <select class="form-select" id="formChatPlatform">
+                <option value="chatgpt">ChatGPT (OpenAI)</option>
+                <option value="claude">Claude (Anthropic)</option>
+                <option value="gemini">Gemini (Google)</option>
+                <option value="groq">Groq</option>
+                <option value="deepseek">DeepSeek</option>
+                <option value="perplexity">Perplexity AI</option>
+                <option value="other">Other Platform</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Pin Status</label>
+              <label class="form-checkbox-label" style="margin-top: 0.5rem;">
+                <input type="checkbox" id="formChatPinned">
+                <span>Pin to top of stream</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Tags (comma separated)</label>
+            <input type="text" class="form-input" id="formChatTags" placeholder="seo, prompts, clustering, on-page">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Description / Summary</label>
+            <textarea class="form-textarea" id="formChatDesc" placeholder="Key insights or context about this conversation..."></textarea>
+          </div>
+        </div>
+
+        <!-- 2. REFERENCE VIDEO FIELDS -->
+        <div id="fieldsVideo" class="type-fields" style="display: none; flex-direction: column; gap: 0.85rem;">
+          <div class="form-group">
+            <label class="form-label">YouTube Video URL *</label>
+            <input type="url" class="form-input" id="formVideoUrl" placeholder="https://www.youtube.com/watch?v=..." oninput="fetchYoutubeOembed(this.value)">
+            <span class="form-hint">Paste URL to auto-extract thumbnail, real title, and channel name.</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Channel / Creator Name</label>
+            <input type="text" class="form-input" id="formVideoChannel" placeholder="Auto-fetched or enter channel name">
+          </div>
+
+          <!-- Live Thumbnail Preview -->
+          <div id="videoThumbPreviewContainer" style="display: none; align-items: center; gap: 1rem; background: #f1f5f9; padding: 0.75rem; border-radius: var(--radius-sm);">
+            <img id="videoThumbPreviewImg" src="" style="width: 120px; height: 68px; object-fit: cover; border-radius: 4px;" alt="Thumbnail">
+            <div style="font-size: 0.8rem; color: #475569;">
+              <span id="videoThumbNotice">Preview fetched successfully!</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. TOOLS & WEBSITES FIELDS -->
+        <div id="fieldsTool" class="type-fields" style="display: none; flex-direction: column; gap: 0.85rem;">
+          <div class="form-group">
+            <label class="form-label">Website / Resource Link *</label>
+            <input type="url" class="form-input" id="formToolLink" placeholder="https://semrush.com or spreadsheet link" oninput="handleToolUrlChange(this.value)">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Category</label>
+              <select class="form-select" id="formToolCategory">
+                <option value="Tool">Tool</option>
+                <option value="Spreadsheet">Spreadsheet</option>
+                <option value="Document">Document</option>
+                <option value="Website">Website</option>
+                <option value="Template">Template</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">FontAwesome Icon Override</label>
+              <select class="form-select" id="formToolIconOverride">
+                <option value="auto">Auto (Google Favicon)</option>
+                <option value="fa-wrench">🔧 fa-wrench</option>
+                <option value="fa-table">📊 fa-table (Spreadsheet)</option>
+                <option value="fa-file-lines">📄 fa-file-lines (Document)</option>
+                <option value="fa-globe">🌐 fa-globe (Website)</option>
+                <option value="fa-code">💻 fa-code (Coding)</option>
+                <option value="fa-wand-magic-sparkles">✨ fa-wand-magic-sparkles</option>
+                <option value="fa-chart-pie">🥧 fa-chart-pie (Analytics)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Description / Purpose</label>
+            <textarea class="form-textarea" id="formToolDesc" placeholder="What is this tool used for in the course?"></textarea>
+          </div>
+        </div>
+
+        <!-- 4. NOTES FIELDS -->
+        <div id="fieldsNote" class="type-fields" style="display: none; flex-direction: column; gap: 0.85rem;">
+          <div class="editor-toggle-row">
+            <label class="form-label" style="margin: 0;">Note Content *</label>
+            <div class="view-mode-toggle">
+              <button type="button" class="toggle-btn active" id="noteEditorModeRich" onclick="switchNoteEditorMode('rich')">
+                <i class="fa-solid fa-pen-nib"></i> Rich Text
+              </button>
+              <button type="button" class="toggle-btn" id="noteEditorModeMd" onclick="switchNoteEditorMode('md')">
+                <i class="fa-brands fa-markdown"></i> Markdown
+              </button>
+            </div>
+          </div>
+
+          <!-- Rich Text Mode -->
+          <div id="richTextEditorContainer">
+            <div class="rich-toolbar">
+              <button type="button" class="rich-tool-btn" onclick="execEditorCmd('bold')" title="Bold"><i class="fa-solid fa-bold"></i></button>
+              <button type="button" class="rich-tool-btn" onclick="execEditorCmd('italic')" title="Italic"><i class="fa-solid fa-italic"></i></button>
+              <button type="button" class="rich-tool-btn" onclick="execEditorCmd('underline')" title="Underline"><i class="fa-solid fa-underline"></i></button>
+              <span style="border-right: 1px solid #cbd5e1; height: 16px; margin: 0 4px;"></span>
+              <button type="button" class="rich-tool-btn" onclick="execEditorCmd('formatBlock', 'h2')" title="Heading 2">H2</button>
+              <button type="button" class="rich-tool-btn" onclick="execEditorCmd('formatBlock', 'h3')" title="Heading 3">H3</button>
+              <span style="border-right: 1px solid #cbd5e1; height: 16px; margin: 0 4px;"></span>
+              <button type="button" class="rich-tool-btn" onclick="execEditorCmd('insertUnorderedList')" title="Bullet List"><i class="fa-solid fa-list-ul"></i></button>
+              <button type="button" class="rich-tool-btn" onclick="execEditorCmd('insertOrderedList')" title="Numbered List"><i class="fa-solid fa-list-ol"></i></button>
+              <button type="button" class="rich-tool-btn" onclick="execEditorCmd('removeFormat')" title="Clear Formatting"><i class="fa-solid fa-eraser"></i></button>
+            </div>
+            <div class="rich-editor-area" id="noteRichEditor" contenteditable="true" placeholder="Write comprehensive lecture notes, formulas, cheat sheets..."></div>
+          </div>
+
+          <!-- Markdown Mode -->
+          <div id="mdEditorContainer" style="display: none; flex-direction: column; gap: 0.5rem;">
+            <textarea class="form-textarea" id="noteMdTextarea" style="min-height: 140px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;" placeholder="# Lecture Notes&#10;&#10;- Key Point 1&#10;- Key Point 2&#10;&#10;**Important note here**"></textarea>
+            <span class="form-hint">Supports # Headers, **bold**, *italic*, - lists, and `code`</span>
+          </div>
+        </div>
+
+        <!-- 5. FILES & DOCUMENTS FIELDS (HYBRID STORAGE) -->
+        <div id="fieldsFile" class="type-fields" style="display: none; flex-direction: column; gap: 0.85rem;">
+          <div class="form-group" id="fileLocalInputGroup">
+            <label class="form-label">Upload File (&lt; 1MB for offline LocalStorage)</label>
+            <input type="file" class="form-input" id="formFileInput" onchange="handleFileUploadCheck(this)">
+          </div>
+
+          <!-- Hybrid Alert / Warning Box -->
+          <div id="fileUploadWarning" style="display: none; background: #fffbeb; border: 1px solid #fcd34d; border-radius: var(--radius-sm); padding: 0.75rem; color: #92400e; font-size: 0.825rem;">
+            <i class="fa-solid fa-triangle-exclamation" style="margin-right: 0.35rem;"></i>
+            <strong>File exceeds 1MB!</strong> Browser local storage is limited. Please provide a Google Drive, OneDrive, or Dropbox link below instead.
+          </div>
+
+          <!-- Cloud Link Input for >1MB or direct linking -->
+          <div class="form-group" id="fileCloudLinkGroup">
+            <label class="form-label">Cloud Document Link (Drive / Dropbox / URL)</label>
+            <input type="url" class="form-input" id="formFileCloudLink" placeholder="https://drive.google.com/file/d/...">
+            <span class="form-hint">Used if file is &gt;1MB or hosted in student drive.</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Description / Summary</label>
+            <textarea class="form-textarea" id="formFileDesc" placeholder="e.g., Module 3 Official Slide Deck & Cheatsheet"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeResourceModal()">Cancel</button>
+        <button type="button" class="btn btn-primary" id="saveResourceBtn" onclick="saveResourceItem()">
+          <i class="fa-solid fa-check"></i> Save Item
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL: CREATE / EDIT MODULE & SUB-MODULE
+       ========================================================================== -->
+  <div class="modal-backdrop" id="moduleModal">
+    <div class="modal-dialog" style="max-width: 480px;">
+      <div class="modal-header">
+        <div class="modal-title" id="moduleModalTitle">
+          <i class="fa-solid fa-folder-plus"></i>
+          <span>Create New Module</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeModuleModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="editModuleId" value="">
+        <input type="hidden" id="editSubmoduleId" value="">
+
+        <div class="form-group">
+          <label class="form-label">Parent Module (Optional)</label>
+          <select class="form-select" id="formModuleParent">
+            <option value="">None (Create as Top-Level Module)</option>
+            <!-- Populated dynamically -->
+          </select>
+          <span class="form-hint">Select a parent module to create a Sub-Module (e.g. SEO &gt; Niche Research).</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Module Name *</label>
+          <input type="text" class="form-input" id="formModuleName" placeholder="e.g., Conversion Rate Optimization" required>
+        </div>
+
+        <div class="form-group" id="moduleIconFormGroup">
+          <label class="form-label">Icon Class</label>
+          <select class="form-select" id="formModuleIcon">
+            <option value="fa-folder">📁 fa-folder (Default)</option>
+            <option value="fa-magnifying-glass-chart">📈 fa-magnifying-glass-chart (SEO)</option>
+            <option value="fa-store">🏬 fa-store (E-Commerce)</option>
+            <option value="fa-robot">🤖 fa-robot (AI / Automation)</option>
+            <option value="fa-code">💻 fa-code (Web Coding)</option>
+            <option value="fa-palette">🎨 fa-palette (Design)</option>
+            <option value="fa-bullhorn">📢 fa-bullhorn (Marketing)</option>
+            <option value="fa-graduation-cap">🎓 fa-graduation-cap (Course)</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModuleModal()">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="saveModule()">
+          <i class="fa-solid fa-check"></i> Save Module
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL: CREATE / EDIT OFFICIAL PAGE
+       ========================================================================== -->
+  <div class="modal-backdrop" id="officialModal">
+    <div class="modal-dialog" style="max-width: 500px;">
+      <div class="modal-header">
+        <div class="modal-title" id="officialModalTitle">
+          <i class="fa-solid fa-landmark"></i>
+          <span>Add Official Page</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeOfficialModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="editOfficialId" value="">
+
+        <div class="form-group">
+          <label class="form-label">Portal / Page Title *</label>
+          <input type="text" class="form-input" id="formOfficialTitle" placeholder="e.g., iSkills Facebook Community" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Web URL *</label>
+          <input type="url" class="form-input" id="formOfficialUrl" placeholder="https://facebook.com/groups/..." required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select class="form-select" id="formOfficialCategory">
+              <option value="Portal">Official Portal / LMS</option>
+              <option value="Facebook">Facebook Group / Page</option>
+              <option value="Community">Discord / Community</option>
+              <option value="Drive">Student Resource Drive</option>
+              <option value="Support">Student Support / Helpdesk</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group" style="justify-content: flex-end;">
+            <label class="form-checkbox-label" style="padding-bottom: 0.5rem;">
+              <input type="checkbox" id="formOfficialPinnedQuick">
+              <span>Pin to Quick Access Bar</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Description / Instructions</label>
+          <textarea class="form-textarea" id="formOfficialDesc" placeholder="Official group rules, portal login instructions, etc."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeOfficialModal()">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="saveOfficialPage()">
+          <i class="fa-solid fa-check"></i> Save Page
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL: BACKUP & RESTORE DATA (JSON)
+       ========================================================================== -->
+  <div class="modal-backdrop" id="backupModal">
+    <div class="modal-dialog" style="max-width: 520px;">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-database"></i>
+          <span>Data Storage & Backup</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeBackupModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.85rem; color: #475569;">
+          All your modules, chats, videos, tools, notes, and official links are stored locally in your browser (<strong>localStorage</strong> prefix <code>iskillshub_</code>).
+        </p>
+
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: var(--radius-sm); padding: 1rem; display: flex; flex-direction: column; gap: 0.65rem;">
+          <strong style="font-size: 0.9rem; color: #0f172a;"><i class="fa-solid fa-download"></i> Export Data Backup</strong>
+          <span style="font-size: 0.8rem; color: #64748b;">Save a complete JSON snapshot file of all your iSkills course assets.</span>
+          <button class="btn btn-primary" style="align-self: flex-start;" onclick="exportDataJson()">
+            <i class="fa-solid fa-file-arrow-down"></i> Download JSON Backup
+          </button>
+        </div>
+
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: var(--radius-sm); padding: 1rem; display: flex; flex-direction: column; gap: 0.65rem;">
+          <strong style="font-size: 0.9rem; color: #0f172a;"><i class="fa-solid fa-upload"></i> Restore from JSON Backup</strong>
+          <span style="font-size: 0.8rem; color: #64748b;">Import a previous iSkills backup file to restore your entire database.</span>
+          <input type="file" id="importJsonFileInput" accept=".json" class="form-input" style="font-size: 0.8rem;">
+          <button class="btn btn-secondary" style="align-self: flex-start;" onclick="importDataJson()">
+            <i class="fa-solid fa-arrows-rotate"></i> Restore Database
+          </button>
+        </div>
+
+        <div style="border-top: 1px solid #e2e8f0; padding-top: 0.75rem; display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.75rem; color: #ef4444;">Clear all local data and reset defaults:</span>
+          <button class="btn btn-danger" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;" onclick="resetToInitialData()">
+            Reset All
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeBackupModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       VANILLA JAVASCRIPT LOGIC
+       ========================================================================== -->
+  <script>
+    /* ==========================================================================
+       A. STORAGE KEYS, CONSTANTS & INITIAL DATA
+       ========================================================================== */
+    const STORAGE_PREFIX = 'iskillshub_';
+    const KEY_MODULES = STORAGE_PREFIX + 'modules';
+    const KEY_ITEMS = STORAGE_PREFIX + 'items';
+    const KEY_OFFICIAL = STORAGE_PREFIX + 'official_pages';
+    const KEY_SETTINGS = STORAGE_PREFIX + 'settings';
+
+    // Default Pre-loaded Modules
+    const DEFAULT_MODULES = [
+      {
+        id: 'mod_seo',
+        name: 'SEO',
+        icon: 'fa-magnifying-glass-chart',
+        submodules: [
+          { id: 'sub_seo_niche', name: 'Niche Research' },
+          { id: 'sub_seo_keyword', name: 'Keyword Research' },
+          { id: 'sub_seo_onpage', name: 'On-Page SEO' },
+          { id: 'sub_seo_linkbuilding', name: 'Link Building' }
+        ]
+      },
+      {
+        id: 'mod_etsy',
+        name: 'Etsy',
+        icon: 'fa-store',
+        submodules: [
+          { id: 'sub_etsy_listings', name: 'Product Listings' },
+          { id: 'sub_etsy_seo', name: 'Etsy SEO & Tags' }
+        ]
+      },
+      {
+        id: 'mod_ai_agents',
+        name: 'AI Agents',
+        icon: 'fa-robot',
+        submodules: [
+          { id: 'sub_ai_prompts', name: 'Prompt Engineering' },
+          { id: 'sub_ai_automation', name: 'Automations & Workflows' }
+        ]
+      },
+      {
+        id: 'mod_web_coding',
+        name: 'Web Coding',
+        icon: 'fa-code',
+        submodules: [
+          { id: 'sub_coding_frontend', name: 'Frontend & Landing Pages' },
+          { id: 'sub_coding_scripts', name: 'Custom Scripts' }
+        ]
+      },
+      {
+        id: 'mod_general',
+        name: 'General',
+        icon: 'fa-graduation-cap',
+        submodules: []
+      }
+    ];
+
+    // Seed Data for First Boot
+    const SEED_ITEMS = [
+      {
+        id: 'item_seed_1',
+        type: 'chat',
+        title: 'Master Keyword Clustering Prompt for Niche Sites',
+        moduleId: 'mod_seo',
+        submoduleId: 'sub_seo_keyword',
+        link: 'https://chatgpt.com/share/67890abcdef',
+        platform: 'chatgpt',
+        pinned: true,
+        tags: 'seo, clustering, intent, keywords',
+        description: 'Detailed prompt session that clusters 500 search queries into semantic hubs with search intent mappings.',
+        createdAt: new Date(Date.now() - 3600000 * 24).toISOString()
+      },
+      {
+        id: 'item_seed_2',
+        type: 'video',
+        title: 'Advanced On-Page SEO Architecture & Internal Linking Blueprint',
+        moduleId: 'mod_seo',
+        submoduleId: 'sub_seo_onpage',
+        youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        videoId: 'dQw4w9WgXcQ',
+        thumbnailUrl: 'https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg',
+        channelName: 'iSkills Masterclass',
+        createdAt: new Date(Date.now() - 3600000 * 48).toISOString()
+      },
+      {
+        id: 'item_seed_3',
+        type: 'tool',
+        title: 'Semrush Keyword Magic & Competitor Analysis',
+        moduleId: 'mod_seo',
+        submoduleId: 'sub_seo_keyword',
+        link: 'https://www.semrush.com',
+        category: 'Tool',
+        iconOverride: 'auto',
+        description: 'Industry standard tool for organic research, search volume, and competitor backlink gap analysis.',
+        createdAt: new Date(Date.now() - 3600000 * 72).toISOString()
+      },
+      {
+        id: 'item_seed_4',
+        type: 'note',
+        title: 'Core Algorithm Updates & Ranking Checklist',
+        moduleId: 'mod_seo',
+        submoduleId: 'sub_seo_onpage',
+        content: '<h2>iSkills SEO Checklist</h2><ul><li><strong>E-E-A-T signals:</strong> Author bio schema & original research.</li><li><strong>Helpful Content System:</strong> Clear intent matching without fluff.</li><li><strong>Page Speed:</strong> Core Web Vitals under 2.5s LCP.</li></ul>',
+        editorMode: 'rich',
+        createdAt: new Date(Date.now() - 3600000 * 12).toISOString()
+      },
+      {
+        id: 'item_seed_5',
+        type: 'chat',
+        title: 'Claude 3.5 Sonnet: Autonomous AI Agent Architecture',
+        moduleId: 'mod_ai_agents',
+        submoduleId: 'sub_ai_automation',
+        link: 'https://claude.ai/chat/ai-agent-flow',
+        platform: 'claude',
+        pinned: true,
+        tags: 'ai, agents, sonnet, python',
+        description: 'System prompts and tool-calling loop logic for multi-step browser automation agents.',
+        createdAt: new Date(Date.now() - 3600000 * 5).toISOString()
+      }
+    ];
+
+    const SEED_OFFICIAL = [
+      {
+        id: 'off_1',
+        title: 'iSkills Next Student Portal',
+        url: 'https://portal.iskills.org',
+        category: 'Portal',
+        pinnedQuickAccess: true,
+        description: 'Access lecture recordings, homework submission, and announcements.',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: 'off_2',
+        title: 'iSkills Official Facebook Group',
+        url: 'https://facebook.com/groups/iskills',
+        category: 'Facebook',
+        pinnedQuickAccess: true,
+        description: 'Main peer-support and mentor Q&A community for students.',
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: 'off_3',
+        title: 'Student Resource Drive (Master Folder)',
+        url: 'https://drive.google.com',
+        category: 'Drive',
+        pinnedQuickAccess: true,
+        description: 'Templates, slides, niche trackers, and software tools.',
+        createdAt: new Date().toISOString()
+      }
+    ];
+
+    /* ==========================================================================
+       B. APPLICATION STATE MANAGEMENT
+       ========================================================================== */
+    const state = {
+      modules: [],
+      items: [],
+      officialPages: [],
+      settings: {
+        chatViewMode: 'cards', // 'cards' | 'list'
+        cardSize: 'medium'     // 'compact' | 'medium' | 'large'
+      },
+      currentView: {
+        type: 'home', // 'home' | 'module' | 'search' | 'official'
+        moduleId: null,
+        submoduleId: null,
+        typeFilter: 'all',
+        sortOrder: 'newest'
+      },
+      searchQuery: '',
+      tempUploadedFileData: null
+    };
+
+    // Helper: UUID Generator with fallback
+    function generateUUID() {
+      if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+        return crypto.randomUUID();
+      }
+      return 'id_' + Math.random().toString(36).substring(2, 9) + Date.now().toString(36);
+    }
+
+    // Initialize or load from LocalStorage
+    function initDatabase() {
+      try {
+        const storedMods = localStorage.getItem(KEY_MODULES);
+        const storedItems = localStorage.getItem(KEY_ITEMS);
+        const storedOfficial = localStorage.getItem(KEY_OFFICIAL);
+        const storedSettings = localStorage.getItem(KEY_SETTINGS);
+
+        if (!storedMods) {
+          localStorage.setItem(KEY_MODULES, JSON.stringify(DEFAULT_MODULES));
+          state.modules = JSON.parse(JSON.stringify(DEFAULT_MODULES));
+        } else {
+          state.modules = JSON.parse(storedMods);
+        }
+
+        if (!storedItems) {
+          localStorage.setItem(KEY_ITEMS, JSON.stringify(SEED_ITEMS));
+          state.items = JSON.parse(JSON.stringify(SEED_ITEMS));
+        } else {
+          state.items = JSON.parse(storedItems);
+        }
+
+        if (!storedOfficial) {
+          localStorage.setItem(KEY_OFFICIAL, JSON.stringify(SEED_OFFICIAL));
+          state.officialPages = JSON.parse(JSON.stringify(SEED_OFFICIAL));
+        } else {
+          state.officialPages = JSON.parse(storedOfficial);
+        }
+
+        if (storedSettings) {
+          state.settings = Object.assign(state.settings, JSON.parse(storedSettings));
+        }
+      } catch (err) {
+        console.error('Error loading database from localStorage:', err);
+        showToast('Error reading database from local storage', 'danger');
+      }
+    }
+
+    function saveModulesToStorage() {
+      localStorage.setItem(KEY_MODULES, JSON.stringify(state.modules));
+      renderSidebar();
+      renderQuickAccessBar();
+    }
+
+    function saveItemsToStorage() {
+      localStorage.setItem(KEY_ITEMS, JSON.stringify(state.items));
+      updateNavigationBadges();
+      renderCurrentView();
+    }
+
+    function saveOfficialToStorage() {
+      localStorage.setItem(KEY_OFFICIAL, JSON.stringify(state.officialPages));
+      updateNavigationBadges();
+      renderQuickAccessBar();
+      if (state.currentView.type === 'official') {
+        renderOfficialView();
+      }
+    }
+
+    function saveSettingsToStorage() {
+      localStorage.setItem(KEY_SETTINGS, JSON.stringify(state.settings));
+    }
+
+    /* ==========================================================================
+       C. UI HELPERS & NOTIFICATIONS
+       ========================================================================== */
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      
+      let icon = 'fa-circle-info';
+      if (type === 'success') icon = 'fa-circle-check';
+      if (type === 'danger') icon = 'fa-triangle-exclamation';
+      
+      toast.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${message}</span>`;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(15px)';
+        toast.style.transition = 'all 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    function formatDate(isoString) {
+      if (!isoString) return '';
+      const d = new Date(isoString);
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    /* Basic Regex Markdown Parser */
+    function renderMarkdown(md) {
+      if (!md) return '';
+      let html = escapeHtml(md);
+
+      // Headers
+      html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+      html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+      html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+
+      // Bold & Italic
+      html = html.replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>');
+      html = html.replace(/\*(.*?)\*/gim, '<em>$1</em>');
+
+      // Code blocks & inline code
+      html = html.replace(/\`\`\`([\s\S]*?)\`\`\`/gim, '<pre><code>$1</code></pre>');
+      html = html.replace(/\`([^\`]+)\`/gim, '<code>$1</code>');
+
+      // Links: [text](url)
+      html = html.replace(/\[([^\]]+)\]\(([^\)]+)\)/gim, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+
+      // Unordered lists
+      html = html.replace(/^\s*-\s*(.*)$/gim, '<li>$1</li>');
+      html = html.replace(/(<li>.*<\/li>)/gim, '<ul>$1</ul>');
+
+      // Line breaks
+      html = html.replace(/\n/gim, '<br>');
+      return html;
+    }
+
+    /* ==========================================================================
+       D. TOP BAR & QUICK ACCESS PINNED LINKS
+       ========================================================================== */
+    function renderQuickAccessBar() {
+      const container = document.getElementById('quickAccessChips');
+      const pinned = state.officialPages.filter(p => p.pinnedQuickAccess);
+
+      if (pinned.length === 0) {
+        container.innerHTML = '<span class="quick-chip-empty">No links pinned to Quick Access bar yet. Pin from Official Pages!</span>';
+        return;
+      }
+
+      container.innerHTML = pinned.map(item => {
+        let domain = '';
+        try { domain = new URL(item.url).hostname; } catch (e) { domain = ''; }
+        const faviconUrl = domain ? `https://www.google.com/s2/favicons?domain=${domain}&sz=64` : '';
+
+        return `
+          <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="quick-chip" title="${escapeHtml(item.title)}">
+            ${faviconUrl ? `<img src="${faviconUrl}" onerror="this.onerror=null; this.src=''; this.className='fa-solid fa-arrow-up-right-from-square';">` : '<i class="fa-solid fa-link"></i>'}
+            <span>${escapeHtml(item.title)}</span>
+          </a>
+        `;
+      }).join('');
+    }
+
+    /* ==========================================================================
+       E. SIDEBAR NAVIGATION & BADGES
+       ========================================================================== */
+    function updateNavigationBadges() {
+      const totalItems = state.items.length;
+      const searchBadge = document.getElementById('navSearchTotal');
+      if (searchBadge) searchBadge.textContent = totalItems;
+
+      const officialBadge = document.getElementById('navOfficialTotal');
+      if (officialBadge) officialBadge.textContent = state.officialPages.length;
+    }
+
+    function renderSidebar() {
+      const container = document.getElementById('sidebarModulesList');
+      if (!container) return;
+
+      container.innerHTML = state.modules.map(mod => {
+        const hasSubmodules = mod.submodules && mod.submodules.length > 0;
+        const modItems = state.items.filter(item => item.moduleId === mod.id);
+        const isActiveMod = state.currentView.type === 'module' && state.currentView.moduleId === mod.id && !state.currentView.submoduleId;
+
+        return `
+          <div class="module-item-wrap">
+            <div class="module-header-row">
+              <a class="nav-link ${isActiveMod ? 'active' : ''}" onclick="selectModule('${mod.id}')">
+                <span class="nav-link-content">
+                  <i class="fa-solid ${mod.icon || 'fa-folder'} nav-link-icon"></i>
+                  <span>${escapeHtml(mod.name)}</span>
+                </span>
+                <span class="nav-badge">${modItems.length}</span>
+              </a>
+
+              ${hasSubmodules ? `
+                <button class="module-toggle-sub" onclick="toggleSubmoduleList('${mod.id}', event)" title="Toggle Sub-Modules">
+                  <i class="fa-solid fa-chevron-down" id="chevron_${mod.id}" style="font-size: 0.75rem;"></i>
+                </button>
+              ` : ''}
+
+              <button class="icon-action-btn" style="width:26px; height:26px; font-size:0.75rem; margin-right:4px;" onclick="openAddSubmoduleModal('${mod.id}', event)" title="Add Sub-Module">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+
+            ${hasSubmodules ? `
+              <ul class="submodule-list" id="sublist_${mod.id}">
+                ${mod.submodules.map(sub => {
+                  const subItems = state.items.filter(item => item.moduleId === mod.id && item.submoduleId === sub.id);
+                  const isSubActive = state.currentView.type === 'module' && state.currentView.moduleId === mod.id && state.currentView.submoduleId === sub.id;
+
+                  return `
+                    <li>
+                      <a class="nav-link submodule-link ${isSubActive ? 'active' : ''}" onclick="selectSubmodule('${mod.id}', '${sub.id}')">
+                        <span class="nav-link-content">
+                          <i class="fa-solid fa-angle-right" style="font-size: 0.7rem; color: #64748b;"></i>
+                          <span>${escapeHtml(sub.name)}</span>
+                        </span>
+                        <span class="nav-badge" style="font-size: 0.65rem;">${subItems.length}</span>
+                      </a>
+                    </li>
+                  `;
+                }).join('')}
+              </ul>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+
+      // Update Nav active classes
+      document.querySelectorAll('.app-sidebar .nav-link').forEach(link => {
+        if (state.currentView.type === 'home' && link.id === 'nav-home') link.classList.add('active');
+        else if (state.currentView.type === 'search' && link.id === 'nav-search') link.classList.add('active');
+        else if (state.currentView.type === 'official' && link.id === 'nav-official') link.classList.add('active');
+        else if (link.id) link.classList.remove('active');
+      });
+
+      updateNavigationBadges();
+    }
+
+    function toggleSubmoduleList(modId, event) {
+      if (event) event.stopPropagation();
+      const list = document.getElementById('sublist_' + modId);
+      const chevron = document.getElementById('chevron_' + modId);
+      if (list) {
+        list.classList.toggle('collapsed');
+        if (chevron) {
+          chevron.className = list.classList.contains('collapsed') 
+            ? 'fa-solid fa-chevron-right' 
+            : 'fa-solid fa-chevron-down';
+        }
+      }
+    }
+
+    /* ==========================================================================
+       F. NAVIGATION & ROUTING ENGINE
+       ========================================================================== */
+    function navigateTo(viewType) {
+      state.currentView.type = viewType;
+      state.currentView.moduleId = null;
+      state.currentView.submoduleId = null;
+      closeMobileSidebar();
+      renderSidebar();
+      renderCurrentView();
+    }
+
+    function selectModule(moduleId) {
+      state.currentView.type = 'module';
+      state.currentView.moduleId = moduleId;
+      state.currentView.submoduleId = null;
+      closeMobileSidebar();
+      renderSidebar();
+      renderCurrentView();
+    }
+
+    function selectSubmodule(moduleId, submoduleId) {
+      state.currentView.type = 'module';
+      state.currentView.moduleId = moduleId;
+      state.currentView.submoduleId = submoduleId;
+      closeMobileSidebar();
+      renderSidebar();
+      renderCurrentView();
+    }
+
+    function renderCurrentView() {
+      const container = document.getElementById('contentView');
+      if (!container) return;
+
+      if (state.currentView.type === 'home') {
+        renderHomeDashboard(container);
+      } else if (state.currentView.type === 'module') {
+        renderModuleStreamView(container);
+      } else if (state.currentView.type === 'search') {
+        renderGlobalSearchView(container);
+      } else if (state.currentView.type === 'official') {
+        renderOfficialView(container);
+      }
+    }
+
+    /* ==========================================================================
+       G. HOME DASHBOARD VIEW
+       ========================================================================== */
+    function renderHomeDashboard(container) {
+      const totalItems = state.items.length;
+      const totalChats = state.items.filter(i => i.type === 'chat').length;
+      const totalVideos = state.items.filter(i => i.type === 'video').length;
+      const totalTools = state.items.filter(i => i.type === 'tool').length;
+      const totalNotes = state.items.filter(i => i.type === 'note').length;
+      const totalFiles = state.items.filter(i => i.type === 'file').length;
+
+      // Recent 5 items
+      const recentItems = [...state.items].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 5);
+
+      container.innerHTML = `
+        <!-- Hero Card -->
+        <div class="hero-welcome-card">
+          <div class="hero-badge">
+            <i class="fa-solid fa-bolt"></i> iSkills Next Command Center
+          </div>
+          <h1 class="hero-title">Welcome to iSkills Hub</h1>
+          <p class="hero-desc">
+            Your centralized command center for course resources. Effortlessly manage your AI prompt chats, reference videos, tools & spreadsheets, lecture notes, and downloadable course documents across all modules.
+          </p>
+        </div>
+
+        <!-- Quick Action Buttons Grid -->
+        <div class="quick-actions-section">
+          <div class="section-title-row">
+            <h2 class="section-heading"><i class="fa-solid fa-wand-magic-sparkles" style="color:var(--blue-accent);"></i> Quick Actions</h2>
+          </div>
+          <div class="quick-action-grid">
+            <div class="quick-action-card" onclick="openResourceModal('chat')">
+              <div class="qa-icon-wrap qa-chat"><i class="fa-solid fa-robot"></i></div>
+              <div class="qa-text-wrap">
+                <span class="qa-title">+ Add AI Chat</span>
+                <span class="qa-subtitle">ChatGPT, Claude, Gemini</span>
+              </div>
+            </div>
+
+            <div class="quick-action-card" onclick="openResourceModal('video')">
+              <div class="qa-icon-wrap qa-video"><i class="fa-brands fa-youtube"></i></div>
+              <div class="qa-text-wrap">
+                <span class="qa-title">+ Add Video</span>
+                <span class="qa-subtitle">YouTube reference link</span>
+              </div>
+            </div>
+
+            <div class="quick-action-card" onclick="openResourceModal('tool')">
+              <div class="qa-icon-wrap qa-tool"><i class="fa-solid fa-wrench"></i></div>
+              <div class="qa-text-wrap">
+                <span class="qa-title">+ Add Tool</span>
+                <span class="qa-subtitle">Software, Website, Sheet</span>
+              </div>
+            </div>
+
+            <div class="quick-action-card" onclick="openResourceModal('note')">
+              <div class="qa-icon-wrap qa-note"><i class="fa-solid fa-note-sticky"></i></div>
+              <div class="qa-text-wrap">
+                <span class="qa-title">+ Add Note</span>
+                <span class="qa-subtitle">Rich Text & Markdown</span>
+              </div>
+            </div>
+
+            <div class="quick-action-card" onclick="openResourceModal('file')">
+              <div class="qa-icon-wrap qa-file"><i class="fa-solid fa-file-arrow-up"></i></div>
+              <div class="qa-text-wrap">
+                <span class="qa-title">+ Add Document</span>
+                <span class="qa-subtitle">Files & Google Drive docs</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Database Metrics Overview -->
+        <div class="dashboard-stats-grid">
+          <div class="stat-card">
+            <span class="stat-label"><i class="fa-solid fa-layer-group"></i> Total Assets</span>
+            <span class="stat-number">${totalItems}</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label"><i class="fa-solid fa-robot" style="color:#0284c7;"></i> AI Chats</span>
+            <span class="stat-number">${totalChats}</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label"><i class="fa-brands fa-youtube" style="color:#ef4444;"></i> Videos</span>
+            <span class="stat-number">${totalVideos}</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label"><i class="fa-solid fa-wrench" style="color:#d97706;"></i> Tools</span>
+            <span class="stat-number">${totalTools}</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label"><i class="fa-solid fa-note-sticky" style="color:#7c3aed;"></i> Notes</span>
+            <span class="stat-number">${totalNotes}</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label"><i class="fa-solid fa-file-lines" style="color:#16a34a;"></i> Files</span>
+            <span class="stat-number">${totalFiles}</span>
+          </div>
+        </div>
+
+        <!-- Recent Activity Stream -->
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div class="section-title-row">
+            <h2 class="section-heading"><i class="fa-solid fa-clock-rotate-left"></i> Recently Added Resources</h2>
+          </div>
+          ${recentItems.length === 0 ? `
+            <div class="empty-state-box">
+              <i class="fa-solid fa-folder-open empty-icon"></i>
+              <div class="empty-title">No resources in your command center yet!</div>
+              <div class="empty-desc">Use the Quick Actions buttons above or the persistent floating (+) button to add your first course asset.</div>
+            </div>
+          ` : `
+            <div class="timeline-stream-container">
+              ${recentItems.map(item => renderStreamItemRow(item)).join('')}
+            </div>
+          `}
+        </div>
+      `;
+    }
+
+    /* ==========================================================================
+       H. ALL-IN-ONE STREAM VIEW (MODULE & SUB-MODULE)
+       ========================================================================== */
+    function renderModuleStreamView(container) {
+      const activeModule = state.modules.find(m => m.id === state.currentView.moduleId);
+      if (!activeModule) {
+        container.innerHTML = `<div class="empty-state-box"><div class="empty-title">Module not found</div></div>`;
+        return;
+      }
+
+      let activeSub = null;
+      if (state.currentView.submoduleId && activeModule.submodules) {
+        activeSub = activeModule.submodules.find(s => s.id === state.currentView.submoduleId);
+      }
+
+      // Filter items belonging to this module / sub-module
+      let items = state.items.filter(item => {
+        if (item.moduleId !== activeModule.id) return false;
+        if (activeSub) {
+          return item.submoduleId === activeSub.id;
+        }
+        return true;
+      });
+
+      // Filter by type pill
+      const currentFilter = state.currentView.typeFilter || 'all';
+      if (currentFilter !== 'all') {
+        items = items.filter(item => item.type === currentFilter);
+      }
+
+      // Sort
+      const sortOrder = state.currentView.sortOrder || 'newest';
+      items.sort((a, b) => {
+        if (sortOrder === 'newest') return new Date(b.createdAt) - new Date(a.createdAt);
+        if (sortOrder === 'oldest') return new Date(a.createdAt) - new Date(b.createdAt);
+        if (sortOrder === 'alpha') return a.title.localeCompare(b.title);
+        return 0;
+      });
+
+      // Split into pinned chats vs regular stream
+      const pinnedChats = items.filter(i => i.type === 'chat' && i.pinned);
+      const regularItems = items.filter(i => !(i.type === 'chat' && i.pinned));
+
+      const viewMode = state.settings.chatViewMode || 'cards';
+      const cardSize = state.settings.cardSize || 'medium';
+
+      container.innerHTML = `
+        <!-- Module Header Card -->
+        <div class="view-header">
+          <div class="view-header-top">
+            <div>
+              <div class="breadcrumb-row">
+                <a onclick="navigateTo('home')">Hub</a>
+                <i class="fa-solid fa-chevron-right" style="font-size: 0.65rem;"></i>
+                <a onclick="selectModule('${activeModule.id}')">${escapeHtml(activeModule.name)}</a>
+                ${activeSub ? `
+                  <i class="fa-solid fa-chevron-right" style="font-size: 0.65rem;"></i>
+                  <span>${escapeHtml(activeSub.name)}</span>
+                ` : ''}
+              </div>
+              <h1 class="view-title">
+                <i class="fa-solid ${activeModule.icon || 'fa-folder'}" style="color:var(--blue-primary);"></i>
+                <span>${escapeHtml(activeSub ? activeSub.name : activeModule.name)}</span>
+              </h1>
+              <div class="view-subtitle">
+                ${activeSub ? `Sub-module under ${escapeHtml(activeModule.name)}` : 'Primary Course Module'} • ${items.length} total resources
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="btn btn-secondary" style="font-size:0.8rem; padding: 0.45rem 0.8rem;" onclick="openEditModuleModal('${activeModule.id}')" title="Edit Module Name">
+                <i class="fa-solid fa-pen"></i> Edit Module
+              </button>
+              <button class="btn btn-primary" onclick="openResourceModal('chat')" style="font-size: 0.825rem;">
+                <i class="fa-solid fa-plus"></i> Add Resource
+              </button>
+            </div>
+          </div>
+
+          <!-- Filter & View Layout Controls Bar -->
+          <div class="stream-controls-bar">
+            <!-- Filter Pills -->
+            <div class="filter-pills">
+              <button class="filter-pill ${currentFilter === 'all' ? 'active' : ''}" onclick="setStreamFilter('all')">
+                <i class="fa-solid fa-layer-group"></i> All
+              </button>
+              <button class="filter-pill ${currentFilter === 'chat' ? 'active' : ''}" onclick="setStreamFilter('chat')">
+                <i class="fa-solid fa-robot"></i> AI Chats
+              </button>
+              <button class="filter-pill ${currentFilter === 'video' ? 'active' : ''}" onclick="setStreamFilter('video')">
+                <i class="fa-brands fa-youtube"></i> Videos
+              </button>
+              <button class="filter-pill ${currentFilter === 'tool' ? 'active' : ''}" onclick="setStreamFilter('tool')">
+                <i class="fa-solid fa-wrench"></i> Tools
+              </button>
+              <button class="filter-pill ${currentFilter === 'note' ? 'active' : ''}" onclick="setStreamFilter('note')">
+                <i class="fa-solid fa-note-sticky"></i> Notes
+              </button>
+              <button class="filter-pill ${currentFilter === 'file' ? 'active' : ''}" onclick="setStreamFilter('file')">
+                <i class="fa-solid fa-file-lines"></i> Files
+              </button>
+            </div>
+
+            <!-- View Switcher (Cards vs List) & Size Selector -->
+            <div class="stream-view-actions">
+              <div class="card-size-selector" title="Card Grid Density">
+                <button class="size-btn ${cardSize === 'compact' ? 'active' : ''}" onclick="setCardSize('compact')">S</button>
+                <button class="size-btn ${cardSize === 'medium' ? 'active' : ''}" onclick="setCardSize('medium')">M</button>
+                <button class="size-btn ${cardSize === 'large' ? 'active' : ''}" onclick="setCardSize('large')">L</button>
+              </div>
+
+              <div class="view-mode-toggle">
+                <button class="toggle-btn ${viewMode === 'cards' ? 'active' : ''}" onclick="setViewMode('cards')" title="Grid Cards View">
+                  <i class="fa-solid fa-table-cells-large"></i> Cards
+                </button>
+                <button class="toggle-btn ${viewMode === 'list' ? 'active' : ''}" onclick="setViewMode('list')" title="List View">
+                  <i class="fa-solid fa-list"></i> List
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PINNED AI CHATS SECTION (Always at VERY TOP of module stream) -->
+        ${pinnedChats.length > 0 ? `
+          <div class="stream-pinned-section">
+            <div class="pinned-section-header">
+              <i class="fa-solid fa-thumbtack"></i> Pinned AI Chats (${pinnedChats.length})
+            </div>
+            <div class="${viewMode === 'cards' ? 'stream-items-grid cards-' + cardSize : 'stream-items-list'}">
+              ${pinnedChats.map(item => renderStreamItemRow(item, true)).join('')}
+            </div>
+          </div>
+        ` : ''}
+
+        <!-- MAIN VERTICAL STREAM TIMELINE -->
+        ${regularItems.length === 0 && pinnedChats.length === 0 ? `
+          <div class="empty-state-box">
+            <i class="fa-solid fa-folder-open empty-icon"></i>
+            <div class="empty-title">No resources found in this module</div>
+            <div class="empty-desc">Click "+ Add Resource" above to add an AI chat, video, tool, note, or file.</div>
+          </div>
+        ` : `
+          <div class="${viewMode === 'cards' ? 'stream-items-grid cards-' + cardSize : 'timeline-stream-container'}">
+            ${regularItems.map(item => renderStreamItemRow(item, false)).join('')}
+          </div>
+        `}
+      `;
+    }
+
+    function setStreamFilter(type) {
+      state.currentView.typeFilter = type;
+      renderCurrentView();
+    }
+
+    function setViewMode(mode) {
+      state.settings.chatViewMode = mode;
+      saveSettingsToStorage();
+      renderCurrentView();
+    }
+
+    function setCardSize(size) {
+      state.settings.cardSize = size;
+      saveSettingsToStorage();
+      renderCurrentView();
+    }
+
+    /* ==========================================================================
+       I. STREAM ITEM ROW RENDERER (ALL ENTITIES)
+       ========================================================================== */
+    function renderStreamItemRow(item, isPinnedSection = false) {
+      let typeBadgeClass = 'badge-chat';
+      let typeIcon = 'fa-robot';
+      let typeName = 'AI Chat';
+
+      if (item.type === 'video') {
+        typeBadgeClass = 'badge-video';
+        typeIcon = 'fa-youtube';
+        typeName = 'Video';
+      } else if (item.type === 'tool') {
+        typeBadgeClass = 'badge-tool';
+        typeIcon = 'fa-wrench';
+        typeName = item.category || 'Tool';
+      } else if (item.type === 'note') {
+        typeBadgeClass = 'badge-note';
+        typeIcon = 'fa-note-sticky';
+        typeName = 'Note';
+      } else if (item.type === 'file') {
+        typeBadgeClass = 'badge-file';
+        typeIcon = 'fa-file-lines';
+        typeName = 'Document';
+      }
+
+      // Find module label
+      const mod = state.modules.find(m => m.id === item.moduleId);
+      const modName = mod ? mod.name : '';
+
+      return `
+        <div class="stream-item-row" id="item_${item.id}">
+          <!-- Timeline Node Icon -->
+          <div class="stream-node-icon" title="${typeName}">
+            <i class="fa-solid ${typeIcon}"></i>
+          </div>
+
+          <!-- Card Body -->
+          <div class="stream-card-body ${item.pinned ? 'pinned-card' : ''}">
+            <div class="stream-card-header">
+              <div>
+                <div class="item-meta-top">
+                  <span class="item-type-badge ${typeBadgeClass}">
+                    <i class="fa-solid ${typeIcon}"></i> ${typeName}
+                  </span>
+                  ${item.platform ? `
+                    <span class="platform-badge platform-${item.platform}">
+                      <i class="fa-solid fa-brain"></i> ${escapeHtml(item.platform.toUpperCase())}
+                    </span>
+                  ` : ''}
+                  <span class="item-date-text">${formatDate(item.createdAt)}</span>
+                  ${modName ? `<span class="item-module-badge"><i class="fa-solid fa-folder"></i> ${escapeHtml(modName)}</span>` : ''}
+                </div>
+
+                <a href="${item.link || item.youtubeUrl || item.cloudLink || '#'}" ${(item.link || item.youtubeUrl || item.cloudLink) ? 'target="_blank" rel="noopener noreferrer"' : ''} class="item-title-link">
+                  <span>${escapeHtml(item.title)}</span>
+                  ${(item.link || item.youtubeUrl || item.cloudLink) ? '<i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.75rem;"></i>' : ''}
+                </a>
+              </div>
+
+              <!-- Action buttons -->
+              <div class="item-actions-group">
+                ${item.type === 'chat' ? `
+                  <button class="icon-action-btn ${item.pinned ? 'active-pin' : ''}" onclick="toggleChatPin('${item.id}')" title="${item.pinned ? 'Unpin Chat' : 'Pin Chat to Top'}">
+                    <i class="fa-solid fa-thumbtack"></i>
+                  </button>
+                ` : ''}
+                <button class="icon-action-btn" onclick="openEditItemModal('${item.id}')" title="Edit Item">
+                  <i class="fa-solid fa-pen"></i>
+                </button>
+                <button class="icon-action-btn danger" onclick="deleteItem('${item.id}')" title="Delete">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- ENTITY SPECIFIC BODY -->
+
+            <!-- 1. AI CHAT SPECIFICS -->
+            ${item.type === 'chat' ? `
+              ${item.description ? `<p class="item-description-text">${escapeHtml(item.description)}</p>` : ''}
+              ${item.tags ? `
+                <div class="item-tags-wrap">
+                  ${item.tags.split(',').map(tag => `<span class="item-tag">#${escapeHtml(tag.trim())}</span>`).join('')}
+                </div>
+              ` : ''}
+            ` : ''}
+
+            <!-- 2. REFERENCE VIDEO SPECIFICS -->
+            ${item.type === 'video' ? `
+              <div class="video-preview-box" onclick="window.open('${escapeHtml(item.youtubeUrl)}', '_blank')">
+                <div class="video-thumb-wrap">
+                  <img src="${item.thumbnailUrl || 'https://img.youtube.com/vi/' + (item.videoId || '') + '/hqdefault.jpg'}" class="video-thumb-img" alt="Thumbnail" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 9%22><rect width=%2216%22 height=%229%22 fill=%22%23111%22/></svg>'">
+                  <div class="video-play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="video-info-wrap">
+                  <span class="video-channel-name"><i class="fa-solid fa-circle-user"></i> ${escapeHtml(item.channelName || 'YouTube')}</span>
+                  <strong style="font-size: 0.95rem; color: #ffffff;">${escapeHtml(item.title)}</strong>
+                  <span style="font-size: 0.75rem; color: #94a3b8;"><i class="fa-solid fa-arrow-up-right-from-square"></i> Click to play video</span>
+                </div>
+              </div>
+            ` : ''}
+
+            <!-- 3. TOOLS & WEBSITES SPECIFICS -->
+            ${item.type === 'tool' ? `
+              <div class="tool-link-card">
+                <div style="display: flex; align-items: center; gap: 0.75rem; overflow: hidden;">
+                  ${item.iconOverride && item.iconOverride !== 'auto' ? `
+                    <div class="tool-icon-fallback"><i class="fa-solid ${item.iconOverride}"></i></div>
+                  ` : `
+                    <img src="https://www.google.com/s2/favicons?domain=${getDomain(item.link)}&sz=128" class="tool-favicon" onerror="this.onerror=null; this.src=''; this.className='tool-icon-fallback fa-solid fa-globe';">
+                  `}
+                  <div style="display: flex; flex-direction: column; overflow: hidden;">
+                    <a href="${escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer" style="font-size: 0.9rem; font-weight: 700; color: var(--navy-900); text-decoration: none;">
+                      ${escapeHtml(item.title)}
+                    </a>
+                    <span style="font-size: 0.75rem; color: #64748b;">${escapeHtml(getDomain(item.link))}</span>
+                  </div>
+                </div>
+                <a href="${escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size:0.75rem; padding: 0.35rem 0.65rem;">
+                  Open <i class="fa-solid fa-external-link" style="margin-left: 2px;"></i>
+                </a>
+              </div>
+              ${item.description ? `<p class="item-description-text" style="margin-top: 0.35rem;">${escapeHtml(item.description)}</p>` : ''}
+            ` : ''}
+
+            <!-- 4. NOTE SPECIFICS -->
+            ${item.type === 'note' ? `
+              <div class="note-content-rendered">
+                ${item.editorMode === 'md' ? renderMarkdown(item.content) : (item.content || '')}
+              </div>
+            ` : ''}
+
+            <!-- 5. FILE / DOCUMENT SPECIFICS -->
+            ${item.type === 'file' ? `
+              <div class="file-attachment-box">
+                <div style="display:flex; align-items: center; gap: 0.75rem; overflow: hidden;">
+                  <i class="fa-solid fa-file-pdf file-type-icon" style="color:var(--danger);"></i>
+                  <div class="file-details">
+                    <span class="file-name">${escapeHtml(item.fileName || item.title)}</span>
+                    <span class="file-size-tag">
+                      ${item.isLocalFile ? '<i class="fa-solid fa-hard-drive"></i> Saved locally in browser' : '<i class="fa-solid fa-cloud"></i> Cloud Document'} 
+                      ${item.fileSize ? '• ' + item.fileSize : ''}
+                    </span>
+                  </div>
+                </div>
+
+                <div>
+                  ${item.fileData ? `
+                    <a href="${item.fileData}" download="${escapeHtml(item.fileName || 'document')}" class="btn btn-primary" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;">
+                      <i class="fa-solid fa-download"></i> Download
+                    </a>
+                  ` : ''}
+                  ${item.cloudLink ? `
+                    <a href="${escapeHtml(item.cloudLink)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.7rem;">
+                      <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Cloud Link
+                    </a>
+                  ` : ''}
+                </div>
+              </div>
+              ${item.fileData && item.fileType && item.fileType.startsWith('image/') ? `
+                <div style="margin-top: 0.5rem;">
+                  <img src="${item.fileData}" class="file-img-preview" alt="Attachment Preview" onclick="window.open('${item.fileData}')">
+                </div>
+              ` : ''}
+              ${item.description ? `<p class="item-description-text">${escapeHtml(item.description)}</p>` : ''}
+            ` : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    function getDomain(urlStr) {
+      try {
+        const u = new URL(urlStr);
+        return u.hostname;
+      } catch (e) {
+        return urlStr || '';
+      }
+    }
+
+    /* Toggle Pin Status for AI Chat */
+    function toggleChatPin(itemId) {
+      const item = state.items.find(i => i.id === itemId);
+      if (item && item.type === 'chat') {
+        item.pinned = !item.pinned;
+        saveItemsToStorage();
+        showToast(item.pinned ? 'Pinned chat to top!' : 'Unpinned chat', 'info');
+      }
+    }
+
+    /* Delete Item */
+    function deleteItem(itemId) {
+      if (confirm('Are you sure you want to delete this resource?')) {
+        state.items = state.items.filter(i => i.id !== itemId);
+        saveItemsToStorage();
+        showToast('Resource deleted successfully', 'danger');
+      }
+    }
+
+    /* ==========================================================================
+       J. OFFICIAL PAGES SECTION
+       ========================================================================== */
+    function renderOfficialView(container) {
+      if (!container) container = document.getElementById('contentView');
+
+      container.innerHTML = `
+        <div class="view-header">
+          <div class="view-header-top">
+            <div>
+              <div class="breadcrumb-row">
+                <a onclick="navigateTo('home')">Hub</a>
+                <i class="fa-solid fa-chevron-right" style="font-size: 0.65rem;"></i>
+                <span>Official Pages</span>
+              </div>
+              <h1 class="view-title">
+                <i class="fa-solid fa-landmark" style="color:var(--blue-primary);"></i>
+                <span>Official Pages & Student Portals</span>
+              </h1>
+              <div class="view-subtitle">
+                Official links, course portals, Facebook groups, and student resources. Pin links to show them globally on the Top Bar!
+              </div>
+            </div>
+
+            <button class="btn btn-primary" onclick="openOfficialModal()">
+              <i class="fa-solid fa-plus"></i> Add Official Page
+            </button>
+          </div>
+        </div>
+
+        ${state.officialPages.length === 0 ? `
+          <div class="empty-state-box">
+            <i class="fa-solid fa-landmark empty-icon"></i>
+            <div class="empty-title">No official pages saved yet</div>
+            <div class="empty-desc">Add official LMS links, student portals, and Facebook groups.</div>
+          </div>
+        ` : `
+          <div class="official-pages-grid">
+            ${state.officialPages.map(page => {
+              let domain = '';
+              try { domain = new URL(page.url).hostname; } catch(e){}
+              const favicon = domain ? `https://www.google.com/s2/favicons?domain=${domain}&sz=64` : '';
+
+              return `
+                <div class="official-page-card">
+                  <div class="official-card-top">
+                    <span class="official-cat-badge">${escapeHtml(page.category || 'Official')}</span>
+                    <div style="display:flex; align-items:center; gap:0.25rem;">
+                      <button class="icon-action-btn ${page.pinnedQuickAccess ? 'active-pin' : ''}" onclick="toggleOfficialPin('${page.id}')" title="${page.pinnedQuickAccess ? 'Remove from Quick Access Bar' : 'Pin to Top Bar Quick Access'}">
+                        <i class="fa-solid fa-thumbtack"></i>
+                      </button>
+                      <button class="icon-action-btn" onclick="openEditOfficialModal('${page.id}')" title="Edit">
+                        <i class="fa-solid fa-pen"></i>
+                      </button>
+                      <button class="icon-action-btn danger" onclick="deleteOfficialPage('${page.id}')" title="Delete">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    ${favicon ? `<img src="${favicon}" style="width:28px; height:28px; border-radius:4px; padding:2px; background:#fff; border:1px solid #e2e8f0;">` : '<i class="fa-solid fa-globe" style="font-size:1.5rem; color:var(--blue-primary);"></i>'}
+                    <div style="display:flex; flex-direction:column; overflow:hidden;">
+                      <strong style="font-size: 1rem; color: var(--navy-900);">${escapeHtml(page.title)}</strong>
+                      <span style="font-size: 0.75rem; color: #64748b;">${escapeHtml(domain || page.url)}</span>
+                    </div>
+                  </div>
+
+                  ${page.description ? `<p style="font-size: 0.825rem; color: #475569; line-height: 1.5;">${escapeHtml(page.description)}</p>` : ''}
+
+                  <div style="margin-top: auto; padding-top: 0.5rem; display: flex; align-items: center; justify-content: space-between;">
+                    ${page.pinnedQuickAccess ? `
+                      <span style="font-size: 0.72rem; color: var(--blue-primary); font-weight:600;"><i class="fa-solid fa-check"></i> Pinned to Top Bar</span>
+                    ` : '<span></span>'}
+                    <a href="${escapeHtml(page.url)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size: 0.775rem; padding: 0.4rem 0.85rem;">
+                      Visit Page <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `}
+      `;
+    }
+
+    function toggleOfficialPin(pageId) {
+      const page = state.officialPages.find(p => p.id === pageId);
+      if (page) {
+        page.pinnedQuickAccess = !page.pinnedQuickAccess;
+        saveOfficialToStorage();
+        showToast(page.pinnedQuickAccess ? 'Pinned to Top Quick Access Bar!' : 'Unpinned from Quick Access Bar', 'info');
+      }
+    }
+
+    function deleteOfficialPage(pageId) {
+      if (confirm('Are you sure you want to delete this official link?')) {
+        state.officialPages = state.officialPages.filter(p => p.id !== pageId);
+        saveOfficialToStorage();
+        showToast('Official page removed', 'danger');
+      }
+    }
+
+    /* ==========================================================================
+       K. GLOBAL SEARCH VIEW (REAL-TIME SCANNING)
+       ========================================================================== */
+    function renderGlobalSearchView(container) {
+      if (!container) container = document.getElementById('contentView');
+
+      container.innerHTML = `
+        <div class="view-header">
+          <div class="view-header-top">
+            <div>
+              <div class="breadcrumb-row">
+                <a onclick="navigateTo('home')">Hub</a>
+                <i class="fa-solid fa-chevron-right" style="font-size: 0.65rem;"></i>
+                <span>Global Search</span>
+              </div>
+              <h1 class="view-title">
+                <i class="fa-solid fa-magnifying-glass" style="color:var(--blue-primary);"></i>
+                <span>Global Search</span>
+              </h1>
+              <div class="view-subtitle">Real-time instant search across titles, descriptions, tags, and modules.</div>
+            </div>
+          </div>
+
+          <div class="search-input-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" class="global-search-input" id="globalSearchInput" placeholder="Type keywords: e.g., keyword, prompt, audit, video, chatgpt..." value="${escapeHtml(state.searchQuery)}" oninput="handleSearchInput(this.value)">
+          </div>
+        </div>
+
+        <div id="searchResultsArea">
+          ${renderSearchResultsHtml()}
+        </div>
+      `;
+
+      // Focus search input
+      setTimeout(() => {
+        const inp = document.getElementById('globalSearchInput');
+        if (inp) {
+          inp.focus();
+          inp.setSelectionRange(inp.value.length, inp.value.length);
+        }
+      }, 50);
+    }
+
+    function handleSearchInput(query) {
+      state.searchQuery = query;
+      const area = document.getElementById('searchResultsArea');
+      if (area) {
+        area.innerHTML = renderSearchResultsHtml();
+      }
+    }
+
+    function renderSearchResultsHtml() {
+      const q = (state.searchQuery || '').trim().toLowerCase();
+
+      let results = state.items;
+      if (q) {
+        results = state.items.filter(item => {
+          const title = (item.title || '').toLowerCase();
+          const desc = (item.description || '').toLowerCase();
+          const tags = (item.tags || '').toLowerCase();
+          const content = (item.content || '').toLowerCase();
+          const mod = state.modules.find(m => m.id === item.moduleId);
+          const modName = mod ? mod.name.toLowerCase() : '';
+
+          return title.includes(q) || desc.includes(q) || tags.includes(q) || content.includes(q) || modName.includes(q);
+        });
+      }
+
+      if (results.length === 0) {
+        return `
+          <div class="empty-state-box">
+            <i class="fa-solid fa-magnifying-glass empty-icon"></i>
+            <div class="empty-title">No matching resources found</div>
+            <div class="empty-desc">Try searching for other keywords like "prompts", "seo", "video", or module names.</div>
+          </div>
+        `;
+      }
+
+      return `
+        <div style="margin-bottom: 0.75rem; font-size: 0.85rem; color: #64748b; font-weight: 600;">
+          Found ${results.length} result${results.length === 1 ? '' : 's'} ${q ? 'matching "' + escapeHtml(q) + '"' : ''}
+        </div>
+        <div class="timeline-stream-container">
+          ${results.map(item => renderStreamItemRow(item)).join('')}
+        </div>
+      `;
+    }
+
+    /* ==========================================================================
+       L. RESOURCE MODAL & CRUD LOGIC (CHAT, VIDEO, TOOL, NOTE, FILE)
+       ========================================================================== */
+    function openResourceModal(type = 'chat', prefillModuleId = null) {
+      document.getElementById('editItemId').value = '';
+      document.getElementById('resourceModalTitle').innerHTML = '<i class="fa-solid fa-plus-circle"></i> <span>Add New Resource</span>';
+      document.getElementById('saveResourceBtn').innerHTML = '<i class="fa-solid fa-check"></i> Save Item';
+
+      const typeSelectGroup = document.getElementById('resourceTypeSelectGroup');
+      typeSelectGroup.style.display = 'flex';
+      document.getElementById('formResourceType').value = type;
+
+      // Populate modules dropdown
+      populateModuleSelect(prefillModuleId || state.currentView.moduleId);
+
+      // Reset form fields
+      document.getElementById('formTitle').value = '';
+      document.getElementById('formChatLink').value = '';
+      document.getElementById('formChatPlatform').value = 'chatgpt';
+      document.getElementById('formChatPinned').checked = false;
+      document.getElementById('formChatTags').value = '';
+      document.getElementById('formChatDesc').value = '';
+
+      document.getElementById('formVideoUrl').value = '';
+      document.getElementById('formVideoChannel').value = '';
+      document.getElementById('videoThumbPreviewContainer').style.display = 'none';
+
+      document.getElementById('formToolLink').value = '';
+      document.getElementById('formToolCategory').value = 'Tool';
+      document.getElementById('formToolIconOverride').value = 'auto';
+      document.getElementById('formToolDesc').value = '';
+
+      document.getElementById('noteRichEditor').innerHTML = '';
+      document.getElementById('noteMdTextarea').value = '';
+      switchNoteEditorMode('rich');
+
+      document.getElementById('formFileInput').value = '';
+      document.getElementById('formFileCloudLink').value = '';
+      document.getElementById('formFileDesc').value = '';
+      document.getElementById('fileUploadWarning').style.display = 'none';
+      state.tempUploadedFileData = null;
+
+      onResourceTypeChange();
+      document.getElementById('resourceModal').classList.add('active');
+    }
+
+    function openEditItemModal(itemId) {
+      const item = state.items.find(i => i.id === itemId);
+      if (!item) return;
+
+      document.getElementById('editItemId').value = item.id;
+      document.getElementById('resourceModalTitle').innerHTML = '<i class="fa-solid fa-pen"></i> <span>Edit Resource</span>';
+      document.getElementById('saveResourceBtn').innerHTML = '<i class="fa-solid fa-check"></i> Update Item';
+
+      // Lock resource type in edit mode
+      document.getElementById('resourceTypeSelectGroup').style.display = 'none';
+      document.getElementById('formResourceType').value = item.type;
+
+      populateModuleSelect(item.moduleId, item.submoduleId);
+      document.getElementById('formTitle').value = item.title || '';
+
+      if (item.type === 'chat') {
+        document.getElementById('formChatLink').value = item.link || '';
+        document.getElementById('formChatPlatform').value = item.platform || 'other';
+        document.getElementById('formChatPinned').checked = !!item.pinned;
+        document.getElementById('formChatTags').value = item.tags || '';
+        document.getElementById('formChatDesc').value = item.description || '';
+      } else if (item.type === 'video') {
+        document.getElementById('formVideoUrl').value = item.youtubeUrl || '';
+        document.getElementById('formVideoChannel').value = item.channelName || '';
+        if (item.thumbnailUrl) {
+          document.getElementById('videoThumbPreviewImg').src = item.thumbnailUrl;
+          document.getElementById('videoThumbPreviewContainer').style.display = 'flex';
+        }
+      } else if (item.type === 'tool') {
+        document.getElementById('formToolLink').value = item.link || '';
+        document.getElementById('formToolCategory').value = item.category || 'Tool';
+        document.getElementById('formToolIconOverride').value = item.iconOverride || 'auto';
+        document.getElementById('formToolDesc').value = item.description || '';
+      } else if (item.type === 'note') {
+        if (item.editorMode === 'md') {
+          switchNoteEditorMode('md');
+          document.getElementById('noteMdTextarea').value = item.content || '';
+        } else {
+          switchNoteEditorMode('rich');
+          document.getElementById('noteRichEditor').innerHTML = item.content || '';
+        }
+      } else if (item.type === 'file') {
+        document.getElementById('formFileCloudLink').value = item.cloudLink || '';
+        document.getElementById('formFileDesc').value = item.description || '';
+      }
+
+      onResourceTypeChange();
+      document.getElementById('resourceModal').classList.add('active');
+    }
+
+    function closeResourceModal() {
+      document.getElementById('resourceModal').classList.remove('active');
+    }
+
+    function onResourceTypeChange() {
+      const type = document.getElementById('formResourceType').value;
+      const typePanels = ['fieldsChat', 'fieldsVideo', 'fieldsTool', 'fieldsNote', 'fieldsFile'];
+
+      typePanels.forEach(panelId => {
+        const el = document.getElementById(panelId);
+        if (el) el.style.display = 'none';
+      });
+
+      if (type === 'chat') document.getElementById('fieldsChat').style.display = 'flex';
+      if (type === 'video') document.getElementById('fieldsVideo').style.display = 'flex';
+      if (type === 'tool') document.getElementById('fieldsTool').style.display = 'flex';
+      if (type === 'note') document.getElementById('fieldsNote').style.display = 'flex';
+      if (type === 'file') document.getElementById('fieldsFile').style.display = 'flex';
+    }
+
+    function populateModuleSelect(selectedModuleId = null, selectedSubmoduleId = null) {
+      const modSelect = document.getElementById('formModuleSelect');
+      if (!modSelect) return;
+
+      modSelect.innerHTML = state.modules.map(m => {
+        return `<option value="${m.id}" ${selectedModuleId === m.id ? 'selected' : ''}>${escapeHtml(m.name)}</option>`;
+      }).join('');
+
+      populateSubmoduleSelect(selectedSubmoduleId);
+    }
+
+    function populateSubmoduleSelect(selectedSubmoduleId = null) {
+      const modSelect = document.getElementById('formModuleSelect');
+      const subSelect = document.getElementById('formSubmoduleSelect');
+      if (!modSelect || !subSelect) return;
+
+      const activeMod = state.modules.find(m => m.id === modSelect.value);
+      if (!activeMod || !activeMod.submodules || activeMod.submodules.length === 0) {
+        subSelect.innerHTML = '<option value="">None (Main Module)</option>';
+        return;
+      }
+
+      subSelect.innerHTML = '<option value="">None (Main Module)</option>' + activeMod.submodules.map(s => {
+        return `<option value="${s.id}" ${selectedSubmoduleId === s.id ? 'selected' : ''}>${escapeHtml(s.name)}</option>`;
+      }).join('');
+    }
+
+    /* Save Resource Item (Create or Update) */
+    function saveResourceItem() {
+      const editId = document.getElementById('editItemId').value;
+      const type = document.getElementById('formResourceType').value;
+      const moduleId = document.getElementById('formModuleSelect').value;
+      const submoduleId = document.getElementById('formSubmoduleSelect').value || null;
+      const title = document.getElementById('formTitle').value.trim();
+
+      if (!title) {
+        showToast('Please enter a title', 'danger');
+        document.getElementById('formTitle').focus();
+        return;
+      }
+
+      let itemObj = null;
+      if (editId) {
+        itemObj = state.items.find(i => i.id === editId);
+      }
+
+      if (!itemObj) {
+        itemObj = {
+          id: generateUUID(),
+          type: type,
+          createdAt: new Date().toISOString()
+        };
+      }
+
+      itemObj.title = title;
+      itemObj.moduleId = moduleId;
+      itemObj.submoduleId = submoduleId;
+
+      // Extract type-specific fields
+      if (type === 'chat') {
+        const link = document.getElementById('formChatLink').value.trim();
+        if (!link) {
+          showToast('Please enter a chat share link', 'danger');
+          return;
+        }
+        itemObj.link = link;
+        itemObj.platform = document.getElementById('formChatPlatform').value;
+        itemObj.pinned = document.getElementById('formChatPinned').checked;
+        itemObj.tags = document.getElementById('formChatTags').value.trim();
+        itemObj.description = document.getElementById('formChatDesc').value.trim();
+      } else if (type === 'video') {
+        const url = document.getElementById('formVideoUrl').value.trim();
+        if (!url) {
+          showToast('Please enter a YouTube video URL', 'danger');
+          return;
+        }
+        itemObj.youtubeUrl = url;
+        itemObj.channelName = document.getElementById('formVideoChannel').value.trim() || 'YouTube';
+        itemObj.videoId = extractYoutubeId(url);
+        itemObj.thumbnailUrl = `https://img.youtube.com/vi/${itemObj.videoId}/hqdefault.jpg`;
+      } else if (type === 'tool') {
+        const link = document.getElementById('formToolLink').value.trim();
+        if (!link) {
+          showToast('Please enter a tool or website link', 'danger');
+          return;
+        }
+        itemObj.link = link;
+        itemObj.category = document.getElementById('formToolCategory').value;
+        itemObj.iconOverride = document.getElementById('formToolIconOverride').value;
+        itemObj.description = document.getElementById('formToolDesc').value.trim();
+      } else if (type === 'note') {
+        const isMd = document.getElementById('noteEditorModeMd').classList.contains('active');
+        itemObj.editorMode = isMd ? 'md' : 'rich';
+        itemObj.content = isMd 
+          ? document.getElementById('noteMdTextarea').value 
+          : document.getElementById('noteRichEditor').innerHTML;
+      } else if (type === 'file') {
+        const cloudLink = document.getElementById('formFileCloudLink').value.trim();
+        itemObj.cloudLink = cloudLink;
+        itemObj.description = document.getElementById('formFileDesc').value.trim();
+
+        if (state.tempUploadedFileData) {
+          itemObj.isLocalFile = true;
+          itemObj.fileData = state.tempUploadedFileData.data;
+          itemObj.fileName = state.tempUploadedFileData.name;
+          itemObj.fileSize = state.tempUploadedFileData.size;
+          itemObj.fileType = state.tempUploadedFileData.type;
+        }
+      }
+
+      if (!editId) {
+        state.items.unshift(itemObj);
+        showToast('Resource added successfully!', 'success');
+      } else {
+        showToast('Resource updated!', 'success');
+      }
+
+      saveItemsToStorage();
+      closeResourceModal();
+    }
+
+    /* Auto-Detect Platform on Chat URL Paste */
+    function handleChatUrlAutoDetect(url) {
+      if (!url) return;
+      const lower = url.toLowerCase();
+      const platformSelect = document.getElementById('formChatPlatform');
+      if (!platformSelect) return;
+
+      if (lower.includes('chatgpt.com') || lower.includes('openai.com')) {
+        platformSelect.value = 'chatgpt';
+      } else if (lower.includes('claude.ai') || lower.includes('anthropic.com')) {
+        platformSelect.value = 'claude';
+      } else if (lower.includes('gemini.google.com')) {
+        platformSelect.value = 'gemini';
+      } else if (lower.includes('groq.com')) {
+        platformSelect.value = 'groq';
+      } else if (lower.includes('deepseek.com')) {
+        platformSelect.value = 'deepseek';
+      } else if (lower.includes('perplexity.ai')) {
+        platformSelect.value = 'perplexity';
+      }
+    }
+
+    /* Fetch YouTube oEmbed API details on URL input */
+    function fetchYoutubeOembed(url) {
+      if (!url) return;
+      const videoId = extractYoutubeId(url);
+      if (!videoId) return;
+
+      // Set fallback thumbnail immediately
+      const thumbUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+      document.getElementById('videoThumbPreviewImg').src = thumbUrl;
+      document.getElementById('videoThumbPreviewContainer').style.display = 'flex';
+
+      // Call YouTube oEmbed API
+      const oembedApi = `https://www.youtube.com/oembed?url=${encodeURIComponent(url)}&format=json`;
+      fetch(oembedApi)
+        .then(res => res.json())
+        .then(data => {
+          if (data.title && !document.getElementById('formTitle').value) {
+            document.getElementById('formTitle').value = data.title;
+          }
+          if (data.author_name) {
+            document.getElementById('formVideoChannel').value = data.author_name;
+          }
+          if (data.thumbnail_url) {
+            document.getElementById('videoThumbPreviewImg').src = data.thumbnail_url;
+          }
+        })
+        .catch(err => {
+          // Graceful fallback: Video ID already works for thumbnail
+          console.log('oEmbed fetch note:', err);
+        });
+    }
+
+    function extractYoutubeId(url) {
+      if (!url) return '';
+      const regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+      const match = url.match(regExp);
+      return (match && match[2].length === 11) ? match[2] : '';
+    }
+
+    function handleToolUrlChange(url) {
+      if (!url) return;
+      try {
+        const hostname = new URL(url).hostname;
+        if (!document.getElementById('formTitle').value) {
+          // Generate a friendly initial title from hostname
+          const cleanName = hostname.replace('www.', '').split('.')[0];
+          document.getElementById('formTitle').value = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
+        }
+      } catch(e) {}
+    }
+
+    /* Note Editor Controls (Rich text execCommand + Markdown toggle) */
+    function switchNoteEditorMode(mode) {
+      const richBtn = document.getElementById('noteEditorModeRich');
+      const mdBtn = document.getElementById('noteEditorModeMd');
+      const richContainer = document.getElementById('richTextEditorContainer');
+      const mdContainer = document.getElementById('mdEditorContainer');
+
+      if (mode === 'rich') {
+        richBtn.classList.add('active');
+        mdBtn.classList.remove('active');
+        richContainer.style.display = 'block';
+        mdContainer.style.display = 'none';
+      } else {
+        mdBtn.classList.add('active');
+        richBtn.classList.remove('active');
+        richContainer.style.display = 'none';
+        mdContainer.style.display = 'flex';
+      }
+    }
+
+    function execEditorCmd(command, val = null) {
+      document.execCommand(command, false, val);
+      document.getElementById('noteRichEditor').focus();
+    }
+
+    /* Hybrid File Upload Logic (<1MB vs >1MB) */
+    function handleFileUploadCheck(fileInput) {
+      const file = fileInput.files[0];
+      const warningBox = document.getElementById('fileUploadWarning');
+      const titleInput = document.getElementById('formTitle');
+
+      if (!file) {
+        state.tempUploadedFileData = null;
+        warningBox.style.display = 'none';
+        return;
+      }
+
+      if (!titleInput.value) {
+        titleInput.value = file.name;
+      }
+
+      // 1MB limit check (1,048,576 bytes)
+      if (file.size > 1048576) {
+        // Exceeds 1MB: Block upload, show warning, switch to link mode
+        warningBox.style.display = 'block';
+        fileInput.value = ''; // clear input
+        state.tempUploadedFileData = null;
+        document.getElementById('formFileCloudLink').focus();
+        showToast('File too large for local storage (&gt;1MB). Please use cloud link!', 'danger');
+      } else {
+        // Under 1MB: Read Base64 string into memory
+        warningBox.style.display = 'none';
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          state.tempUploadedFileData = {
+            data: e.target.result,
+            name: file.name,
+            size: (file.size / 1024).toFixed(1) + ' KB',
+            type: file.type
+          };
+          showToast('File cached in browser storage (&lt;1MB)', 'success');
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    /* ==========================================================================
+       M. MODULE & SUB-MODULE CREATION / EDITING
+       ========================================================================== */
+    function openModuleModal(parentModuleId = null) {
+      document.getElementById('editModuleId').value = '';
+      document.getElementById('editSubmoduleId').value = '';
+      document.getElementById('moduleModalTitle').innerHTML = '<i class="fa-solid fa-folder-plus"></i> <span>Create New Module</span>';
+
+      document.getElementById('formModuleName').value = '';
+      document.getElementById('formModuleIcon').value = 'fa-folder';
+
+      // Populate Parent Module dropdown
+      const parentSelect = document.getElementById('formModuleParent');
+      parentSelect.innerHTML = '<option value="">None (Create as Top-Level Module)</option>' + state.modules.map(m => {
+        return `<option value="${m.id}" ${parentModuleId === m.id ? 'selected' : ''}>${escapeHtml(m.name)}</option>`;
+      }).join('');
+
+      document.getElementById('moduleModal').classList.add('active');
+    }
+
+    function openAddSubmoduleModal(parentModId, event) {
+      if (event) event.stopPropagation();
+      openModuleModal(parentModId);
+    }
+
+    function openEditModuleModal(modId) {
+      const mod = state.modules.find(m => m.id === modId);
+      if (!mod) return;
+
+      document.getElementById('editModuleId').value = mod.id;
+      document.getElementById('editSubmoduleId').value = '';
+      document.getElementById('moduleModalTitle').innerHTML = '<i class="fa-solid fa-pen"></i> <span>Edit Module</span>';
+
+      document.getElementById('formModuleName').value = mod.name;
+      document.getElementById('formModuleIcon').value = mod.icon || 'fa-folder';
+
+      const parentSelect = document.getElementById('formModuleParent');
+      parentSelect.innerHTML = '<option value="">None (Top-Level Module)</option>';
+
+      document.getElementById('moduleModal').classList.add('active');
+    }
+
+    function closeModuleModal() {
+      document.getElementById('moduleModal').classList.remove('active');
+    }
+
+    function saveModule() {
+      const editModId = document.getElementById('editModuleId').value;
+      const parentId = document.getElementById('formModuleParent').value;
+      const name = document.getElementById('formModuleName').value.trim();
+      const icon = document.getElementById('formModuleIcon').value;
+
+      if (!name) {
+        showToast('Please enter module name', 'danger');
+        return;
+      }
+
+      if (editModId) {
+        // Edit existing top-level module
+        const mod = state.modules.find(m => m.id === editModId);
+        if (mod) {
+          mod.name = name;
+          mod.icon = icon;
+          showToast('Module updated', 'success');
+        }
+      } else if (parentId) {
+        // Create Sub-module inside parent
+        const parentMod = state.modules.find(m => m.id === parentId);
+        if (parentMod) {
+          if (!parentMod.submodules) parentMod.submodules = [];
+          const newSub = {
+            id: 'sub_' + Math.random().toString(36).substring(2, 8),
+            name: name
+          };
+          parentMod.submodules.push(newSub);
+          showToast(`Sub-module "${name}" created!`, 'success');
+        }
+      } else {
+        // Create new Top-Level Module
+        const newMod = {
+          id: 'mod_' + Math.random().toString(36).substring(2, 8),
+          name: name,
+          icon: icon,
+          submodules: []
+        };
+        state.modules.push(newMod);
+        showToast(`Module "${name}" created!`, 'success');
+      }
+
+      saveModulesToStorage();
+      closeModuleModal();
+    }
+
+    /* ==========================================================================
+       N. OFFICIAL PAGE CREATION / EDITING
+       ========================================================================== */
+    function openOfficialModal() {
+      document.getElementById('editOfficialId').value = '';
+      document.getElementById('officialModalTitle').innerHTML = '<i class="fa-solid fa-landmark"></i> <span>Add Official Page</span>';
+      document.getElementById('formOfficialTitle').value = '';
+      document.getElementById('formOfficialUrl').value = '';
+      document.getElementById('formOfficialCategory').value = 'Portal';
+      document.getElementById('formOfficialPinnedQuick').checked = true;
+      document.getElementById('formOfficialDesc').value = '';
+
+      document.getElementById('officialModal').classList.add('active');
+    }
+
+    function openEditOfficialModal(pageId) {
+      const page = state.officialPages.find(p => p.id === pageId);
+      if (!page) return;
+
+      document.getElementById('editOfficialId').value = page.id;
+      document.getElementById('officialModalTitle').innerHTML = '<i class="fa-solid fa-pen"></i> <span>Edit Official Page</span>';
+      document.getElementById('formOfficialTitle').value = page.title;
+      document.getElementById('formOfficialUrl').value = page.url;
+      document.getElementById('formOfficialCategory').value = page.category || 'Portal';
+      document.getElementById('formOfficialPinnedQuick').checked = !!page.pinnedQuickAccess;
+      document.getElementById('formOfficialDesc').value = page.description || '';
+
+      document.getElementById('officialModal').classList.add('active');
+    }
+
+    function closeOfficialModal() {
+      document.getElementById('officialModal').classList.remove('active');
+    }
+
+    function saveOfficialPage() {
+      const editId = document.getElementById('editOfficialId').value;
+      const title = document.getElementById('formOfficialTitle').value.trim();
+      const url = document.getElementById('formOfficialUrl').value.trim();
+      const category = document.getElementById('formOfficialCategory').value;
+      const pinnedQuickAccess = document.getElementById('formOfficialPinnedQuick').checked;
+      const description = document.getElementById('formOfficialDesc').value.trim();
+
+      if (!title || !url) {
+        showToast('Please provide both Title and Web URL', 'danger');
+        return;
+      }
+
+      if (editId) {
+        const page = state.officialPages.find(p => p.id === editId);
+        if (page) {
+          page.title = title;
+          page.url = url;
+          page.category = category;
+          page.pinnedQuickAccess = pinnedQuickAccess;
+          page.description = description;
+          showToast('Official page updated!', 'success');
+        }
+      } else {
+        const newPage = {
+          id: generateUUID(),
+          title: title,
+          url: url,
+          category: category,
+          pinnedQuickAccess: pinnedQuickAccess,
+          description: description,
+          createdAt: new Date().toISOString()
+        };
+        state.officialPages.push(newPage);
+        showToast('Official page saved!', 'success');
+      }
+
+      saveOfficialToStorage();
+      closeOfficialModal();
+    }
+
+    /* ==========================================================================
+       O. BACKUP & RESTORE JSON ENGINE
+       ========================================================================== */
+    function openBackupModal() {
+      document.getElementById('backupModal').classList.add('active');
+    }
+
+    function closeBackupModal() {
+      document.getElementById('backupModal').classList.remove('active');
+    }
+
+    function exportDataJson() {
+      const backupData = {
+        app: 'iSkills Hub',
+        version: '2.5',
+        exportedAt: new Date().toISOString(),
+        modules: state.modules,
+        items: state.items,
+        officialPages: state.officialPages
+      };
+
+      const jsonStr = JSON.stringify(backupData, null, 2);
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `iskillshub_backup_${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('Database backup downloaded!', 'success');
+    }
+
+    function importDataJson() {
+      const fileInput = document.getElementById('importJsonFileInput');
+      const file = fileInput.files[0];
+      if (!file) {
+        showToast('Please select a JSON backup file to import', 'danger');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          if (parsed.modules && parsed.items) {
+            state.modules = parsed.modules;
+            state.items = parsed.items;
+            if (parsed.officialPages) state.officialPages = parsed.officialPages;
+
+            localStorage.setItem(KEY_MODULES, JSON.stringify(state.modules));
+            localStorage.setItem(KEY_ITEMS, JSON.stringify(state.items));
+            localStorage.setItem(KEY_OFFICIAL, JSON.stringify(state.officialPages));
+
+            renderSidebar();
+            renderQuickAccessBar();
+            renderCurrentView();
+            closeBackupModal();
+            showToast('Database restored successfully!', 'success');
+          } else {
+            showToast('Invalid backup format', 'danger');
+          }
+        } catch (err) {
+          showToast('Error reading JSON file', 'danger');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function resetToInitialData() {
+      if (confirm('CAUTION: This will clear all your custom modules, notes, and items and restore the initial defaults. Continue?')) {
+        localStorage.removeItem(KEY_MODULES);
+        localStorage.removeItem(KEY_ITEMS);
+        localStorage.removeItem(KEY_OFFICIAL);
+        localStorage.removeItem(KEY_SETTINGS);
+        initDatabase();
+        renderSidebar();
+        renderQuickAccessBar();
+        renderCurrentView();
+        closeBackupModal();
+        showToast('Reset to default course data', 'info');
+      }
+    }
+
+    /* ==========================================================================
+       P. MOBILE DRAWER & FAB CONTROLS
+       ========================================================================== */
+    function toggleMobileSidebar() {
+      const sidebar = document.getElementById('appSidebar');
+      const backdrop = document.getElementById('sidebarBackdrop');
+      sidebar.classList.toggle('open');
+      backdrop.classList.toggle('open');
+    }
+
+    function closeMobileSidebar() {
+      const sidebar = document.getElementById('appSidebar');
+      const backdrop = document.getElementById('sidebarBackdrop');
+      if (sidebar) sidebar.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('open');
+    }
+
+    function setupEventListeners() {
+      // Mobile Nav Hamburger
+      const toggleBtn = document.getElementById('mobileNavToggle');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', toggleMobileSidebar);
+      }
+
+      const backdrop = document.getElementById('sidebarBackdrop');
+      if (backdrop) {
+        backdrop.addEventListener('click', closeMobileSidebar);
+      }
+
+      // FAB Toggle
+      const fabMainBtn = document.getElementById('fabMainBtn');
+      const fabMenu = document.getElementById('fabMenu');
+      if (fabMainBtn && fabMenu) {
+        fabMainBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          fabMenu.classList.toggle('active');
+          fabMainBtn.classList.toggle('active');
+        });
+
+        // Close FAB menu when clicking outside
+        document.addEventListener('click', () => {
+          fabMenu.classList.remove('active');
+          fabMainBtn.classList.remove('active');
+        });
+      }
+
+      // Close modal on escape key
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeResourceModal();
+          closeModuleModal();
+          closeOfficialModal();
+          closeBackupModal();
+        }
+      });
+    }
+
+    /* ==========================================================================
+       Q. FIRST BOOTSTRAP INITIALIZATION
+       ========================================================================== */
+    window.addEventListener('DOMContentLoaded', () => {
+      initDatabase();
+      setupEventListeners();
+      renderSidebar();
+      renderQuickAccessBar();
+      renderCurrentView();
+    });
+  </script>
+</body>
+</html>
